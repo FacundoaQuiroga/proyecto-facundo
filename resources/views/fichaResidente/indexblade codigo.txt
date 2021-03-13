@@ -1,0 +1,31 @@
+@extends('layouts.app')
+
+@section('content')
+    <div class="container">
+
+        <div class="card card-cascade cascading-admin-card user-card">
+
+            <div class="admin-up d-flex justify-content-start">
+                <i class="fa fa-users info-color py-4 mr-3 z-depth-2"></i>
+                <div class="data">
+                    <h5 class="font-weight-bold dark-grey-text">Tramites residente:</h5>
+                </div>
+            </div>
+
+
+            <div class="card-body card-body-cascade">
+
+                <div class="row">
+                    <div class="col-lg-12">
+
+                        <ul><a href="{{route('residentes.show', $valor_rut)}}">Mostrar mi formulario residente</a></ul>
+                        <table class="table">
+
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+@endsection
