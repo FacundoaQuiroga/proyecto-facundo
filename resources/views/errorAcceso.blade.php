@@ -11,10 +11,19 @@
 
 
                         <div class="alert alert-danger" role="alert">
-                            Sesion Caducada Porfavor vuelva a iniciar sesion!
+                            Error de acceso, usted debe usar unicamente su rut!
+                            si esta no es tu sesion entonces vuelve a iniciar sesion
 
                             <li class="nav-item mt-md-2 pt-md-2 mb-2 ">
-                                <a class="alert alert-primary" href="{{ route('login') }}">{{ __('Iniciar sesion') }}</a>
+                                <a class="alert alert-primary" href="{{ route('logout') }}"
+                                   onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                    {{ __('Cerrar sesion') }}
+                                </a>
+
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                    @csrf
+                                </form>
                             </li>
                         </div>
 

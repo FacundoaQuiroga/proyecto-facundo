@@ -47,8 +47,10 @@ class ResidenteController extends Controller
 
                     return view('fichaResidente.index',compact('valor_rut'));
                 }else{
-                    echo 'no tiene acceso a los datos de este residente';
+                    return view('errorAcceso');
                 }
+            }else{
+                return view('errorAcceso');
             }
 
             return view('fichaResidente.index');
@@ -91,12 +93,16 @@ class ResidenteController extends Controller
 
         $residente = Residente::find($user_rut);
 
-
-        if( $residente->user_rut == auth()->user()->rut ){
-            return view('fichaResidente.show', compact('residente'));
+        if ($residente != null){
+            if( $residente->user_rut == auth()->user()->rut ){
+                return view('fichaResidente.show', compact('residente'));
+            }else{
+                return view('errorAcceso');
+            }
         }else{
-            echo "No tienes permiso de ver esta información";
+            return view('errorAcceso');
         }
+
 
     }
 

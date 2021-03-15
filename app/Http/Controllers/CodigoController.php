@@ -24,7 +24,7 @@ class CodigoController extends Controller
 
             return view('codigoqr.index', compact('datoqr','datoresidente'));
         }else{
-            return view('usuario');
+            return view('errorAcceso');
         }
 
 
@@ -41,7 +41,7 @@ class CodigoController extends Controller
         if(auth()->user()->role_id == 3){
             return view('codigoqr.show', compact('datoid'));
         }else{
-            echo 'no puede acceder a esta informacion';
+            return view('errorAcceso');
         }
 
     }
