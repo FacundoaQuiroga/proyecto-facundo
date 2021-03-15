@@ -101,7 +101,7 @@
             <!-- Navbar links -->
             <ul class="nav navbar-nav nav-flex-icons ml-auto">
 
-                <!-- Dropdown -->
+                <!-- Dropdown
                 <li class="nav-item dropdown notifications-nav">
                     <a class="nav-link dropdown-toggle waves-effect" id="navbarDropdownMenuLink" data-toggle="dropdown"
                        aria-haspopup="true" aria-expanded="false">
@@ -134,6 +134,7 @@
                     <a class="nav-link waves-effect"><i class="far fa-comments"></i> <span
                             class="clearfix d-none d-sm-inline-block">Soporte</span></a>
                 </li>
+                -->
                 @guest
                     @if (Route::has('login'))
                         <li class="nav-item">
