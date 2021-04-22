@@ -37,12 +37,16 @@ class ResidenteController extends Controller
             $residenteDatos = Residente::where('user_rut', auth()->user()->rut)->first();
 
 
-
+            //comprueba si la variable $residenteDatos viene con datos
             if ($residenteDatos != null){
 
+                //le asigna el valor de user_rut a $dato
                 $dato = $residenteDatos->user_rut;
 
+                //comprueba si el user_rut es igual a el rut de el usuario que se logeo
                 if(auth()->user()->rut == $dato){
+
+                    //se guarda el rut en una variable que sera usada en la vista index de la carpeta fichaResidente
                     $valor_rut = $residenteDatos->user_rut;
 
                     return view('fichaResidente.index',compact('valor_rut'));

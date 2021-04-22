@@ -11,6 +11,7 @@ class CodigoController extends Controller
 
     public function qrcodeIndex(){
 
+        //generador de codigo qr a traves de el rut de residente
 
         $residenteDatos = Residente::where('user_rut', auth()->user()->rut)->first();
 

@@ -24,7 +24,7 @@ class AdministradorController extends Controller
     public function index(Request $request) {
 
 
-
+        //buscador en el crud para buscar los residentes o para el crud de usuarios
         if ($request) {
 
             $query = trim($request->get('search'));
