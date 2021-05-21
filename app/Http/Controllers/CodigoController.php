@@ -22,18 +22,13 @@ class CodigoController extends Controller
 
             $datoqr = QrCode::size(250)->generate( route('qrcode.show', $valor_id));
 
-
             return view('codigoqr.index', compact('datoqr','datoresidente'));
         }else{
-            return view('errorAcceso');
+            return view('vistasError.errorAcceso');
         }
 
 
     }
-
-
-
-
 
 
     public function qrcodeShow($id){
@@ -42,7 +37,7 @@ class CodigoController extends Controller
         if(auth()->user()->role_id == 3){
             return view('codigoqr.show', compact('datoid'));
         }else{
-            return view('errorAcceso');
+            return view('vistasError.errorAcceso');
         }
 
     }

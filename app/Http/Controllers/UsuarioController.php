@@ -9,15 +9,15 @@ class UsuarioController extends Controller
 
     public function index()
     {
-        return view('usuario');
+        return view('vistasError.usuario');
     }
     public function subindex()
     {
-        return view('usuario2');
+        return view('vistasError.usuario2');
     }
     public function sesioncaducada()
     {
-        return view('sesionCaducada');
+        return view('vistasError.sesionCaducada');
     }
 
 }

@@ -148,7 +148,7 @@
 
                                                         <div class="md-form form-sm mb-0">
                                                             <input type="text" id="form11" class="form-control form-control-sm" disabled>
-                                                            <label for="form11" class="">Subcidio de Transporte</label>
+                                                            <label for="form11" class="">Subsidio de Transporte</label>
                                                         </div>
 
                                                     </div>

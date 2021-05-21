@@ -31,7 +31,7 @@ class ResidenteController extends Controller
 
             /*$datos = Residente::where('user_rut', auth()->user()->rut)->paginate();
 
-            return view('fichaResidente.index', compact('datos'));
+            return view('residente.index', compact('datos'));
             */
 
             $residenteDatos = Residente::where('user_rut', auth()->user()->rut)->first();
@@ -46,18 +46,18 @@ class ResidenteController extends Controller
                 //comprueba si el user_rut es igual a el rut de el usuario que se logeo
                 if(auth()->user()->rut == $dato){
 
-                    //se guarda el rut en una variable que sera usada en la vista index de la carpeta fichaResidente
+                    //se guarda el rut en una variable que sera usada en la vista index de la carpeta residente
                     $valor_rut = $residenteDatos->user_rut;
 
-                    return view('fichaResidente.index',compact('valor_rut'));
+                    return view('residente.index',compact('valor_rut'));
                 }else{
-                    return view('errorAcceso');
+                    return view('vistasError.errorAcceso');
                 }
             }else{
-                return view('errorAcceso');
+                return view('vistasError.errorAcceso');
             }
 
-            return view('fichaResidente.index');
+            return view('residente.index');
 
     }
 
@@ -99,7 +99,7 @@ class ResidenteController extends Controller
 
         if ($residente != null){
             if( $residente->user_rut == auth()->user()->rut ){
-                return view('fichaResidente.show', compact('residente'));
+                return view('residente.show', compact('residente'));
             }else{
                 return view('errorAcceso');
             }
