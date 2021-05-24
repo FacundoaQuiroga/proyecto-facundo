@@ -55,10 +55,13 @@
                         </a>
                         <div class="collapsible-body">
                             <ul>
-                                <!-- <li>
-                                     <a href="/admin">perfil administrador</a>
+                                 <li>
+                                     <a href="{{route('residentes.index')}}">Perfil residente</a>
                                  </li>
-                                 -->
+                                <li>
+                                    <a href="{{route('qrcode.index')}}">Codigo QR residente</a>
+                                </li>
+
                              </ul>
                          </div>
                      </li>

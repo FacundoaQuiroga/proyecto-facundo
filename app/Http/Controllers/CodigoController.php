@@ -12,13 +12,14 @@ class CodigoController extends Controller
     public function qrcodeIndex(){
 
         //generador de codigo qr a traves de el rut de residente
+        //al escanear codigo deberia arrojar la siguiente ruta /qrcode/rut
 
         $residenteDatos = Residente::where('user_rut', auth()->user()->rut)->first();
 
         if ($residenteDatos != null){
 
             $datoresidente = $residenteDatos;
-            $valor_id = $residenteDatos->id;
+            $valor_id = $residenteDatos->user_rut;
 
             $datoqr = QrCode::size(250)->generate( route('qrcode.show', $valor_id));
 
@@ -32,6 +33,7 @@ class CodigoController extends Controller
 
 
     public function qrcodeShow($id){
+
         $datoid = Residente::find($id);
 
         if(auth()->user()->role_id == 3){

@@ -34,11 +34,14 @@ class HomeController extends Controller
 
                 $valor = ($dato->user_rut);
 
+
                 if(auth()->user()->rut == $valor){
                     $agregoRole = User::where('rut', '=', auth()->user()->rut)->first();
-                    $agregoRole -> role_id = '2';
-                    $agregoRole -> save();
-
+                    if($agregoRole -> role_id != '3'){
+                        //si no es validador entonces puede autoasignarle rol residente
+                        $agregoRole -> role_id = '2';
+                        $agregoRole -> save();
+                    }
 
                 }
             }
@@ -56,6 +59,7 @@ class HomeController extends Controller
         }elseif(auth()->user()->role_id == '2'){
             return view('homeResidente');
         }elseif (auth()->user()->role_id == '3'){
+
             return view('homeValidador');
         }else{
             return view('home');

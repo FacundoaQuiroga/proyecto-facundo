@@ -43,7 +43,7 @@ class User extends Authenticatable
 
     public function esResidente(){
 
-        if($this->role->nombre_rol == 'residente'){
+        if($this->role->nombre_rol == 'residente' || $this->role->nombre_rol == 'validador'){
 
             return true;
 
