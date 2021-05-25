@@ -44,6 +44,12 @@
                                 </div>
                                 <br>
                                 <ul><a class="font-weight-bold black-text hoverable alert alert-success" href="{{route('residentes.show', $valor_rut)}}">- Mostrar mi formulario residente</a></ul>
+                                <br>
+                                <!--Aqui boton solicitudes-->
+                                <ul><a class="font-weight-bold black-text hoverable alert alert-success" href="{{route('residentes.solicitud', $valor_rut)}}">- Mostrar Solicitudes</a></ul>
+                                <br>
+                                <ul><a class="font-weight-bold black-text hoverable alert alert-success" href="{{route('residentes.subsidio', $valor_rut)}}">- Solicitar Subsidio</a></ul>
+
                                 <canvas id="" height="170px"></canvas>
 
                             </div>

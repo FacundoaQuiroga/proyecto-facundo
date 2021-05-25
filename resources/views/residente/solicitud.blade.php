@@ -1,4 +1,5 @@
-@extends('layouts.linksValidador')
+
+@extends('layouts.links')
 
 @section('content')
 <!-- Main Navigation -->
@@ -35,36 +36,54 @@
 
                         </div>
 
-                        <div class="col-xl-7 col-md-12 mb-4">
+                        <div class="col-xl-12 col-md-12 mb-4">
 
                             <!-- Chart -->
-                            <div class="text-left view view-cascade gradient-card-header primary-color">
-                                <h4 class="h4-responsive mb-0 font-weight-bold">Rut : {{ Auth::user()->rut }}</h4>
-                                <h4 class="h4-responsive mb-0 font-weight-bold">Correo : {{ Auth::user()->email }} </h4>
-                                <h6 class="h6-responsive mb-0 font-weight-bold mt-md-4 pt-md-2 mb-5">Instrucciones: <br> toma una
-                                una foto con tu aplicacion QR a el codigo qr que te muestre el residente y abrela con el mismo navegador
-                                    en el cual has iniciado la intranet</h6>
-                                <canvas id="" height="170px"></canvas>
+                            <div class="view gradient-card-header primary-color">
+                                <div class="container col-md-10 mb-4">
 
+                                    <!-- Card -->
+                                    <div class="card card-cascade cascading-admin-card user-card">
+
+                                        <!-- Card Data -->
+                                        <div class="admin-up d-flex justify-content-start">
+                                            <i class="fas fa-users info-color py-4 mr-3 z-depth-2"></i>
+                                            <div class="data">
+                                                <h5 class="font-weight-bold dark-grey-text">Lista de solicitudes </h5>
+                                            </div>
+                                        </div>
+                                        <!-- Card Data -->
+
+                                        <!-- Card content -->
+                                        <div class="row">
+                                            <div class="col">
+                                                <table class="table">
+
+                                                    <tr>
+                                                        <td>1  </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>2</td>
+                                                    </tr>
+
+                                                </table>
+                                            </div>
+                                        </div>
+
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
 
                         </div>
 
-                    </div>
-                    <!-- Grid row -->
 
                 </section>
-                <!-- Section: Chart -->
 
             </div>
-            <!-- Card -->
 
         </section>
-        <!-- Section: Analytical panel -->
 
-        <!-- Section: data tables -->
-
-        <!-- Section: data tables -->
 
     </div>
 

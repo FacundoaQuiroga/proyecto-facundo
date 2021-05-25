@@ -91,6 +91,13 @@ class AdministradorController extends Controller
         return view('admin.restaurar',compact('datos'));
     }
 
+    /*vista importar residentes por excel*/
+    public function importar(){
+
+
+        return view('admin.importar');
+    }
+
     /*recupera datos eliminados de residente*/
     public function recuperarResidente($valor){
         Residente::withTrashed()->find($valor)->restore();
@@ -185,5 +192,24 @@ class AdministradorController extends Controller
         return redirect('/adminUsers/restaurar');
     }
 
+
+    /////////////////////////////////////////////////////
+    // Solicitudes de subcidio acceso solo para Administrador
+    /////////////////////////////////////////////////////
+
+    public function indexSubsidio(Request $request) {
+        //buscador en el crud para buscar subsidios de residentes
+        if ($request) {
+
+            $query = trim($request->get('search'));
+
+            $datos = Residente::where('nombres', 'LIKE', '%' . $query . '%')
+                ->orWhere('apellidos', 'LIKE', '%' . $query . '%')
+                ->orderBy('id','asc')
+                ->paginate();
+            return view('admin.adminSubsidio', ['datos' => $datos, 'search' => $query]);
+        }
+
+    }
 
 }

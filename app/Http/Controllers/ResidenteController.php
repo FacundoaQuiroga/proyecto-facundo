@@ -143,4 +143,48 @@ class ResidenteController extends Controller
     {
         //
     }
+
+    // vista que lista las solicitudes de el residente
+    public function solicitud($user_rut)
+    {
+        //aqui pase en vez de id un user_rut para validar que este ingresando por
+        //ruta el usuario y no pueda entrar a los datos de otro usuario, ademas
+        // en el modelo se le cambio la llave primaria y el increment a false
+
+        $residente = Residente::find($user_rut);
+
+        if ($residente != null){
+            if( $residente->user_rut == auth()->user()->rut ){
+                return view('residente.solicitud', compact('residente'));
+            }else{
+                return view('errorAcceso');
+            }
+        }else{
+            return view('errorAcceso');
+        }
+
+
+    }
+    // vista que muestra formulario para solicitar subsidio
+    public function subsidio($user_rut)
+    {
+        //aqui pase en vez de id un user_rut para validar que este ingresando por
+        //ruta el usuario y no pueda entrar a los datos de otro usuario, ademas
+        // en el modelo se le cambio la llave primaria y el increment a false
+
+        $residente = Residente::find($user_rut);
+
+        if ($residente != null){
+            if( $residente->user_rut == auth()->user()->rut ){
+                return view('residente.subsidio', compact('residente'));
+            }else{
+                return view('errorAcceso');
+            }
+        }else{
+            return view('errorAcceso');
+        }
+
+
+    }
+
 }

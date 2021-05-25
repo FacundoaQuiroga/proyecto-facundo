@@ -29,7 +29,7 @@
                             @endif
                             <!-- Card image -->
                                 <div class="view view-cascade gradient-card-header primary-color">
-                                    <h2 class="h2-responsive mb-0 font-weight-bold">listado residentes</h2>
+                                    <h2 class="h2-responsive mb-0 font-weight-bold">listado solicitudes de subsidio</h2>
                                 </div>
 
 
@@ -65,16 +65,16 @@
                                                 @endif
                                             </h6>
 
-                                            <!-- Card Data -->
+                                            <!-- Card Data
                                             <div class="d-flex justify-content-start">
                                                 <i class=" info-color py-4 mr-3 z-depth-2"></i>
                                                 <a class="hoverable alert alert-warning" href="{{route('admin.restaurar')}}">Lista de residentes eliminados</a>
                                             </div>
-
+                                            -->
                                             <!--MODIFICAR RUTA ENVIAR A VISTA DE IMPORTACION DE EXCEL 'INSERT EN TABLA RESIDENTE' -->
                                             <div class="d-flex justify-content-start">
                                                 <i class=" info-color py-4 mr-3 z-depth-2"></i>
-                                                <a class="hoverable alert alert-success" href="{{route('admin.importar')}}">Importar Residentes</a>
+                                                <a class="hoverable alert alert-primary" href="{{route('admin.importar')}}">Exportar Subsidios</a>
                                             </div>
 
                                             <div class="row">

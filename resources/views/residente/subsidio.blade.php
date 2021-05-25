@@ -1,4 +1,5 @@
-@extends('layouts.linksValidador')
+
+@extends('layouts.links')
 
 @section('content')
 <!-- Main Navigation -->
@@ -35,17 +36,134 @@
 
                         </div>
 
-                        <div class="col-xl-7 col-md-12 mb-4">
+                        <div class="col-xl-12 col-md-12 mb-4">
 
                             <!-- Chart -->
-                            <div class="text-left view view-cascade gradient-card-header primary-color">
-                                <h4 class="h4-responsive mb-0 font-weight-bold">Rut : {{ Auth::user()->rut }}</h4>
-                                <h4 class="h4-responsive mb-0 font-weight-bold">Correo : {{ Auth::user()->email }} </h4>
-                                <h6 class="h6-responsive mb-0 font-weight-bold mt-md-4 pt-md-2 mb-5">Instrucciones: <br> toma una
-                                una foto con tu aplicacion QR a el codigo qr que te muestre el residente y abrela con el mismo navegador
-                                    en el cual has iniciado la intranet</h6>
-                                <canvas id="" height="170px"></canvas>
+                            <div class="view gradient-card-header primary-color">
+                                <div class="container col-md-10 mb-4">
 
+                                    <!-- Card -->
+                                    <div class="card card-cascade cascading-admin-card user-card">
+
+                                        <!-- Card Data -->
+                                        <div class="admin-up d-flex justify-content-start">
+                                            <i class="fas fa-users info-color py-4 mr-3 z-depth-2"></i>
+                                            <div class="data">
+                                                <h5 class="font-weight-bold dark-grey-text">Solicitud de subsidio </h5>
+                                            </div>
+                                        </div>
+                                        <!-- Card Data -->
+
+                                        <!-- Card content -->
+                                        <div class="card-body card-body-cascade">
+                                            <h1></h1>
+                                            <!-- Grid row -->
+                                            <div class="row">
+
+                                                <!-- Grid column -->
+                                                <div class="col-lg-4">
+
+                                                    <div class="md-form form-sm mb-0">
+                                                        <input type="text" id="form12" class="form-control form-control-sm" placeholder="{{ Auth::user()->rut }}" disabled>
+                                                        <label for="form12" class="">RUT</label>
+                                                    </div>
+
+                                                </div>
+                                                <!-- Grid column -->
+
+                                                <!-- Grid column -->
+                                                <div class="col-lg-4">
+
+                                                    <div class="md-form form-sm mb-0">
+                                                        <input type="text" id="form3" class="form-control form-control-sm" placeholder="{{ Auth::user()->email }}" disabled>
+                                                        <label for="form3" class="">Email</label>
+                                                    </div>
+
+                                                </div>
+                                                <!-- Grid column -->
+
+
+                                            </div>
+                                            <!-- Grid row -->
+
+                                            <!-- Grid row -->
+                                            <div class="row">
+
+                                                <!-- Grid column -->
+                                                <div class="col-md-6">
+
+                                                    <div class="md-form form-sm mb-0">
+                                                        <input type="text" id="form5" class="form-control form-control-sm" placeholder="{{ $residente->nombres }}" disabled>
+                                                        <label for="form5" class="">Nombres</label>
+                                                    </div>
+
+                                                </div>
+                                                <!-- Grid column -->
+
+                                                <!-- Grid column -->
+                                                <div class="col-md-6">
+
+                                                    <div class="md-form form-sm mb-0">
+                                                        <input type="text" id="form5" class="form-control form-control-sm" placeholder="{{ $residente->apellidos }}" disabled>
+                                                        <label for="form5" class="">Apellidos</label>
+                                                    </div>
+
+                                                </div>
+                                                <!-- Grid column -->
+
+                                            </div>
+
+
+                                            <!-- Grid row -->
+
+                                            <!-- Grid row -->
+
+                                            <!-- Grid row -->
+                                            <div class="row">
+
+                                                <!-- Grid column -->
+                                                <div class="col-lg-4 col-md-4">
+
+                                                    <div class="md-form form-sm mb-0">
+                                                        <input type="text" id="form11" class="form-control form-control-sm" placeholder="aereo" >
+                                                        <label for="form11" class="">Tipo de subsidio</label>
+                                                    </div>
+
+                                                </div>
+                                                <!-- Grid column -->
+
+
+                                                <!-- Grid column -->
+                                                <div class="col-lg-4 col-md-4">
+
+                                                    <div class="md-form form-sm mb-0">
+                                                        <input type="text" id="form12" class="form-control form-control-sm" placeholder="puertomontt-chaiten" >
+                                                        <label for="form12" class="">Tramo</label>
+                                                    </div>
+
+                                                </div>
+                                                <!-- Grid column -->
+                                                <!-- Grid column -->
+                                                <div class="col-lg-4 col-md-4">
+
+                                                    <div class="md-form form-sm mb-0">
+                                                        <input type="text" id="form13" class="form-control form-control-sm" placeholder="15-mar-21" >
+                                                        <label for="form13" class="">Fecha de viaje</label>
+                                                    </div>
+
+                                                </div>
+                                                <!-- Grid column -->
+
+                                            </div>
+
+
+                                        </div>
+                                        <!-- Card content -->
+
+                                    </div>
+                                    <!-- Card -->
+
+                                </div>
                             </div>
 
                         </div>
@@ -60,11 +178,7 @@
             <!-- Card -->
 
         </section>
-        <!-- Section: Analytical panel -->
 
-        <!-- Section: data tables -->
-
-        <!-- Section: data tables -->
 
     </div>
 

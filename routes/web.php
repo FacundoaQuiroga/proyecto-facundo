@@ -26,6 +26,9 @@ Route::get('/admin', [\App\Http\Controllers\AdministradorController::class, 'ind
 /*ruta para listar los usuarios en un crud*/
 Route::get('/adminUsers', [\App\Http\Controllers\AdministradorController::class, 'indexUsers']);
 
+/*ruta para listar Solicitudes de Residentes*/
+Route::get('/adminSubsidio', [\App\Http\Controllers\AdministradorController::class, 'indexSubsidio']);
+
 /*ruta para editar perfiles de residentes*/
 Route::get('/admin/{valor}/editar',[AdministradorController::class, 'edit'])->name('admin.edit');
 
@@ -53,6 +56,10 @@ Route::get('/admin/restaurar',[AdministradorController::class, 'restaurar'])->na
 Route::get('/admin/restaurar/{valor}',[AdministradorController::class, 'recuperarResidente'])->name('admin.recuperarResidente');
 Route::get('/admin/restaurar/{valor}/eliminar-definitivamente',[AdministradorController::class, 'EliminarResidente'])->name('admin.EliminarResidente');
 
+//vista importar residentes por excel
+Route::get('/admin/importar',[AdministradorController::class, 'importar'])->name('admin.importar');
+
+
 /*vista Restaurar users eliminado*/
 Route::get('/adminUsers/restaurar',[AdministradorController::class, 'restaurarUsers'])->name('adminUsers.restaurar');
 Route::get('/adminUsers/restaurar/{valor}',[AdministradorController::class, 'recuperarUsers'])->name('adminUsers.recuperarUsuario');
@@ -65,6 +72,8 @@ Route::get('/adminUsers/restaurar/{valor}/eliminar-definitivamente',[Administrad
 /*estas son las rutas de el controlador Residente necesito implementar el resource para usar solo una linea*/
 Route::get('residentes/{user_rut}',[ResidenteController::class, 'show'])->name('residentes.show');
 Route::get('residentes',[ResidenteController::class, 'index'])->name('residentes.index');
+Route::get('residentes/{user_rut}/solicitud',[ResidenteController::class, 'solicitud'])->name('residentes.solicitud');
+Route::get('residentes/{user_rut}/subsidio',[ResidenteController::class, 'subsidio'])->name('residentes.subsidio');
 
 
 /* estas son rutas para que el residente no entre al perfil de admin y para que admin no entre a perfil residente*/

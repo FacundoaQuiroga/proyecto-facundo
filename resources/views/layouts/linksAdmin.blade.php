@@ -52,18 +52,29 @@
                     <li>
                         <a class="collapsible-header waves-effect arrow-r">
                             <i class="w-fa fas fa-user"></i>Menu<i class="fas fa-angle-down rotate-icon"></i>
+
                         </a>
+                        <!--hacer un collapsive que se llame listado y meta los dos listados que hay-->
+
                         <div class="collapsible-body">
                             <ul>
                                 <li>
                                     <a href="/admin">listado residentes</a>
                                 </li>
+
                             </ul>
                         </div>
                         <div class="collapsible-body">
                             <ul>
                                 <li>
                                     <a href="/adminUsers">listado usuarios</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="collapsible-body">
+                            <ul>
+                                <li>
+                                    <a href="/adminSubsidio">Solicitudes de subsidio</a>
                                 </li>
                             </ul>
                         </div>

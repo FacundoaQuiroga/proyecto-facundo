@@ -1,4 +1,5 @@
-@extends('layouts.linksValidador')
+
+@extends('layouts.linksAdmin')
 
 @section('content')
 <!-- Main Navigation -->
@@ -29,23 +30,46 @@
                         @endif
                         <!-- Card image -->
                             <div class="view view-cascade gradient-card-header primary-color">
-                                <h2 class="h2-responsive mb-0 font-weight-bold">Bienvenido : {{ Auth::user()->name }}</h2>
+                                <h2 class="h2-responsive mb-0 font-weight-bold">Importar Residentes</h2>
                             </div>
 
 
                         </div>
 
-                        <div class="col-xl-7 col-md-12 mb-4">
+                        <div class="col-xl-12 col-md-12 mb-4">
 
                             <!-- Chart -->
-                            <div class="text-left view view-cascade gradient-card-header primary-color">
-                                <h4 class="h4-responsive mb-0 font-weight-bold">Rut : {{ Auth::user()->rut }}</h4>
-                                <h4 class="h4-responsive mb-0 font-weight-bold">Correo : {{ Auth::user()->email }} </h4>
-                                <h6 class="h6-responsive mb-0 font-weight-bold mt-md-4 pt-md-2 mb-5">Instrucciones: <br> toma una
-                                una foto con tu aplicacion QR a el codigo qr que te muestre el residente y abrela con el mismo navegador
-                                    en el cual has iniciado la intranet</h6>
-                                <canvas id="" height="170px"></canvas>
+                            <div class="view gradient-card-header primary-color">
+                                <div class="container col-md-10 mb-4">
 
+                                    <!-- Card -->
+                                    <div class="card card-cascade cascading-admin-card user-card">
+
+                                        <!-- Card Data -->
+                                        <div class="admin-up d-flex justify-content-start">
+                                            <i class="fas fa-users info-color py-4 mr-3 z-depth-2"></i>
+                                            <div class="data">
+                                                <h5 class="font-weight-bold dark-grey-text">Elija la forma en la que quiere importar los registros </h5>
+                                            </div>
+                                        </div>
+                                        <!-- Card Data -->
+                                        <div class="row">
+                                            <div class="col">
+                                                <table class="table">
+
+                                                            <h1>aqui deberia poner un importador de archivos csv o excel</h1>
+                                                    <br>
+                                                    <a class="hoverable alert alert-success" href="">Importar</a>
+
+
+                                                </table>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Card -->
+
+                                </div>
                             </div>
 
                         </div>
