@@ -49,17 +49,28 @@
                                         <div class="admin-up d-flex justify-content-start">
                                             <i class="fas fa-users info-color py-4 mr-3 z-depth-2"></i>
                                             <div class="data">
-                                                <h5 class="font-weight-bold dark-grey-text">Elija la forma en la que quiere importar los registros </h5>
+                                                <h5 class="font-weight-bold dark-grey-text">Importe archivo en formato Excel</h5>
                                             </div>
                                         </div>
                                         <!-- Card Data -->
                                         <div class="row">
                                             <div class="col">
                                                 <table class="table">
-
-                                                            <h1>aqui deberia poner un importador de archivos csv o excel</h1>
                                                     <br>
-                                                    <a class="hoverable alert alert-success" href="">Importar</a>
+
+                                                    <form action="{{ route('admin.importar.excel') }}" method="post" enctype="multipart/form-data">
+                                                        @csrf
+
+
+                                                        <input class="form-control form-control-lg" id="formFileLg" type="file" name="file">
+                                                        <br>
+                                                        <br>
+
+                                                        @if(Session::has('message'))
+                                                            <p>{{ Session::get('message') }}</p>
+                                                        @endif
+                                                        <button class="hoverable alert alert-success">Importar Excel</button>
+                                                    </form>
 
 
                                                 </table>

@@ -29,15 +29,19 @@ class HomeController extends Controller
             //con esto valido si el rol_id de usuario sera 1 o 2 comparando el rut de tabla usuario con el user_rut de la tabla .
 
             $dato = Residente::where('user_rut', auth()->user()->rut)->first();
-
+            $dato1 = Residente::where('user_rut', auth()->user()->rut)->first();
             if ($dato != null) {
 
                 $valor = ($dato->user_rut);
 
 
+
                 if(auth()->user()->rut == $valor){
                     $agregoRole = User::where('rut', '=', auth()->user()->rut)->first();
-                    if($agregoRole -> role_id != '3'){
+
+                    //el 3 es de rol validador, 1 es para rol administrador, 2 para rol residente
+                    if($agregoRole -> role_id != '3' && $agregoRole -> role_id != '1'){
+
                         //si no es validador entonces puede autoasignarle rol residente
                         $agregoRole -> role_id = '2';
                         $agregoRole -> save();
@@ -55,11 +59,10 @@ class HomeController extends Controller
         /*muestra vistas dependiendo de el rol que tenga usuario "1 admin","2 residente","3 validador" */
 
         if (auth()->user()->role_id == '1'){
-            return view('homeAdmin');
+            return view('homeAdmin', compact('dato'));
         }elseif(auth()->user()->role_id == '2'){
-            return view('homeResidente');
+            return view('homeResidente', compact('dato1'));
         }elseif (auth()->user()->role_id == '3'){
-
             return view('homeValidador');
         }else{
             return view('home');

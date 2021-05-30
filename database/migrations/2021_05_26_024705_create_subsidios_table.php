@@ -15,6 +15,14 @@ class CreateSubsidiosTable extends Migration
     {
         Schema::create('subsidios', function (Blueprint $table) {
             $table->id();
+            $table->text('nombres');
+            $table->text('apellidos');
+            $table->string('user_rut');
+            $table->string('email');
+            $table->text('tipo_subsidio');
+            $table->text('tramo');
+            $table->text('fecha_viaje');
+            $table->text('estado')->nullable();
             $table->timestamps();
         });
     }

@@ -97,14 +97,27 @@
 
                                                     </div>
 
-                                                    <div class="col-md-6">
+                                                    <div class="col-lg-6">
 
                                                         <div class="md-form form-sm mb-0">
-                                                            <input type="text" id="rol_id" class="form-control form-control-sm" name="rol_id"  placeholder="{{ $user->role_id }}" value="{{ $user->role_id }}" >
+
+                                                        <!-- <div class="btn-group">
+                                                                <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                                    Elegir Rol
+                                                                </button>
+                                                                <div class="dropdown-menu">
+                                                                    <a class="dropdown-item" >Administrador</a>
+                                                                    <a class="dropdown-item" >Residente</a>
+                                                                    <a class="dropdown-item" >Validador</a>
+                                                                </div>
+                                                            </div> -->
+
+                                                             <input type="text" id="rol_id" class="form-control form-control-sm" name="rol_id"  placeholder="{{ $user->role_id }}" value="{{ $user->role_id }}" >
 
 
                                                             <input type="hidden" name="_method" value="PUT">
                                                             <label for="form5" class="">Rol</label>
+
                                                         </div>
 
 

@@ -1,5 +1,5 @@
 
-@extends('layouts.links')
+@extends('layouts.linksAdmin')
 
 @section('content')
 <!-- Main Navigation -->
@@ -30,7 +30,7 @@
                         @endif
                         <!-- Card image -->
                             <div class="view view-cascade gradient-card-header primary-color">
-                                <h2 class="h2-responsive mb-0 font-weight-bold">Bienvenido : {{ Auth::user()->name }}</h2>
+                                <h2 class="h2-responsive mb-0 font-weight-bold">Importar Residentes</h2>
                             </div>
 
 
@@ -49,108 +49,36 @@
                                         <div class="admin-up d-flex justify-content-start">
                                             <i class="fas fa-users info-color py-4 mr-3 z-depth-2"></i>
                                             <div class="data">
-                                                <h5 class="font-weight-bold dark-grey-text">Solicitud de subsidio </h5>
+                                                <h5 class="font-weight-bold dark-grey-text">Importe archivo en formato Excel</h5>
                                             </div>
                                         </div>
-                                        <!--  route('subsidios.store') }} -->
-                                        <form action="/residentes/{{$residente->user_rut}}/subsidio" method="POST">
-                                            @csrf
-                                            <div class="card-body card-body-cascade">
+                                        <!-- Card Data -->
+                                        <div class="row">
+                                            <div class="col">
+                                                <table class="table">
+                                                    <br>
 
-                                                <div class="row">
-
-                                                    <!-- le puse hidden ha las columnas que necesito insertar pero no quiero que modifiquen datos los usuarios -->
-
-                                                    <div hidden class="col-lg-4">
-
-                                                        <div class="md-form form-sm mb-0">
-                                                            <input type="text" id="form12" class="form-control form-control-sm" name="rut" placeholder="{{ Auth::user()->rut }}" value="{{Auth::user()->rut}}" >
-                                                            <label for="form12" class="">RUT</label>
-                                                        </div>
-
-                                                    </div>
-
-                                                    <div hidden class="col-lg-4">
-
-                                                        <div class="md-form form-sm mb-0">
-                                                            <input type="text" id="form3" class="form-control form-control-sm" name="email" placeholder="{{ Auth::user()->email }}" value="{{Auth::user()->email}}" >
-                                                            <label for="form3" class="">Email</label>
-                                                        </div>
-
-                                                    </div>
-
-                                                </div>
-
-                                                <div class="row">
-
-                                                    <!-- Grid column -->
-                                                    <div hidden class="col-md-6">
-
-                                                        <div class="md-form form-sm mb-0">
-                                                            <input type="text" id="form5" class="form-control form-control-sm" name="nombres" placeholder="{{ $residente->nombres }}" value="{{ $residente->nombres }}" >
-                                                            <label for="form5" class="">Nombres</label>
-                                                        </div>
-
-                                                    </div>
-                                                    <!-- Grid column -->
-
-                                                    <!-- Grid column -->
-                                                    <div hidden class="col-md-6">
-
-                                                        <div class="md-form form-sm mb-0">
-                                                            <input type="text" id="form5" class="form-control form-control-sm" name="apellidos" placeholder="{{ $residente->apellidos }}" value="{{ $residente->apellidos }}" >
-                                                            <label for="form5" class="">Apellidos</label>
-                                                        </div>
-
-                                                    </div>
+                                                    <form action="{{ route('admin.actualizar.excel') }}" method="post" enctype="multipart/form-data">
+                                                        @csrf
 
 
-                                                </div>
+                                                        <input class="form-control form-control-lg" id="formFileLg" type="file" name="file">
+                                                        <br>
+                                                        <br>
 
-                                                <div class="row">
+                                                        @if(Session::has('message'))
+                                                            <p>{{ Session::get('message') }}</p>
+                                                        @endif
+                                                        <button class="hoverable alert alert-success">Actualizar Excel</button>
+                                                    </form>
 
 
-                                                    <div class="col-lg-4 col-md-4">
-
-                                                        <div class="md-form form-sm mb-0">
-                                                            <input type="text" id="form11" class="form-control form-control-sm" name="subsidio" placeholder="aereo" >
-                                                            <label for="form11" class="">Tipo de subsidio</label>
-                                                        </div>
-
-                                                    </div>
-
-                                                    <div class="col-lg-4 col-md-4">
-
-                                                        <div class="md-form form-sm mb-0">
-                                                            <input type="text" id="form12" class="form-control form-control-sm" name="tramo" placeholder="puertomontt-chaiten" >
-                                                            <label for="form12" class="">Tramo</label>
-                                                        </div>
-
-                                                    </div>
-
-                                                    <div class="col-lg-4 col-md-4">
-
-                                                        <div class="md-form form-sm mb-0">
-                                                            <input type="text" id="form13" class="form-control form-control-sm" name="fechaViaje" placeholder="15-mar-21" >
-                                                            <label for="form13" class="">Fecha de viaje</label>
-                                                        </div>
-
-                                                    </div>
-
-                                                </div>
-
-                                                    @if(Session::has('message'))
-                                                        <p class="alert alert-success">{{ Session::get('message') }}</p>
-                                                    @endif
+                                                </table>
 
                                             </div>
-
-
-                                            <button class="mt-3 btn btn-primary" type="submit" >Enviar</button>
-
-                                        </form>
-
+                                        </div>
                                     </div>
+                                    <!-- Card -->
 
                                 </div>
                             </div>
@@ -167,7 +95,11 @@
             <!-- Card -->
 
         </section>
+        <!-- Section: Analytical panel -->
 
+        <!-- Section: data tables -->
+
+        <!-- Section: data tables -->
 
     </div>
 

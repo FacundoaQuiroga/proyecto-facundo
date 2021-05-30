@@ -6,6 +6,10 @@ use App\Models\Residente;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Imports\ResidentesImport;
+
+
 
 
 class AdministradorController extends Controller
@@ -28,6 +32,7 @@ class AdministradorController extends Controller
     public function index(Request $request) {
 
 
+
         //buscador en el crud para buscar los residentes o para el crud de usuarios
         if ($request) {
 
@@ -37,8 +42,10 @@ class AdministradorController extends Controller
                                 ->orWhere('apellidos', 'LIKE', '%' . $query . '%')
                                 ->orderBy('id','asc')
                                 ->paginate();
-            return view('admin.admin', ['datos' => $datos, 'search' => $query]);
+            return view('admin.admin', ['datos' => $datos, 'search' => $query, ]);
         }
+
+
         /*
         return view('admin.admin', [
             'datos' => Residente::paginate()
@@ -46,7 +53,7 @@ class AdministradorController extends Controller
         */
     }
 
-    //editar residente
+
     //editar residente
     public function edit($valor)
     {
@@ -91,13 +98,6 @@ class AdministradorController extends Controller
         return view('admin.restaurar',compact('datos'));
     }
 
-    /*vista importar residentes por excel*/
-    public function importar(){
-
-
-        return view('admin.importar');
-    }
-
     /*recupera datos eliminados de residente*/
     public function recuperarResidente($valor){
         Residente::withTrashed()->find($valor)->restore();
@@ -121,6 +121,7 @@ class AdministradorController extends Controller
     /*clase de listado usuarios*/
     public function indexUsers(Request $request) {
         if ($request) {
+
             $query = trim($request->get('search'));
 
             $datos = User::where('name', 'LIKE', '%' . $query . '%')
@@ -192,9 +193,53 @@ class AdministradorController extends Controller
         return redirect('/adminUsers/restaurar');
     }
 
+    /////////////////////////////////////////////////////
+    // importar residentes acceso solo para Administrador
+    /////////////////////////////////////////////////////
+
+    /*vista importar residentes por excel*/
+    public function importarVista(){
+
+        return view('admin.importar');
+    }
+    public function actualizarVista(){
+
+        return view('admin.actualizar');
+    }
+
+    /*importacion de excel residentes*/
+    public function importarExcel(Request $request){
+
+        $file = $request->file('file');
+        Excel::import(new ResidentesImport, $file);
+
+        return back()->with('message', 'Importacion de residentes completada');
+    }
+
+    public function actualizarExcel(Request $request){
+
+        $file = $request->file('file');
+        $residentes = Excel::toCollection(new ResidentesImport, $file);
+        foreach($residentes[0] as $residente){
+            //dd($residente['nombres']);
+
+            Residente::where('user_rut', $residente['rut'])->update([
+                'nombres' => $residente['nombres'],
+                'apellidos' => $residente['apellidos'],
+                'user_rut' => $residente['rut'],
+                'comuna' => $residente['comuna'],
+                'fecha_certificado' => $residente['fechacert'],
+                'fecha_actualizacion' => $residente['fechaactualizacion'],
+                'sector' => $residente['sector'],
+            ]);
+        }
+
+
+        return back()->with('message', 'Actualizacion de residentes completada');
+    }
 
     /////////////////////////////////////////////////////
-    // Solicitudes de subcidio acceso solo para Administrador
+    // Solicitudes de subsidio acceso solo para Administrador
     /////////////////////////////////////////////////////
 
     public function indexSubsidio(Request $request) {

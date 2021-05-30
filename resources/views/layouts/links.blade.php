@@ -54,6 +54,19 @@
                         </a>
                         <div class="collapsible-body">
                             <ul>
+                                @if(Auth::user()->role_id == '1')
+                                    <li>
+                                        <a href="/admin">listado residentes</a>
+                                    </li>
+                                    <li>
+                                        <a href="/adminUsers">listado usuarios</a>
+                                    </li>
+                                    <li>
+                                        <a href="/adminSubsidio">Solicitudes de subsidio</a>
+                                    </li>
+
+                                @endif
+
                                 <li>
                                     <a href="{{route('residentes.index')}}">Perfil residente</a>
                                 </li>

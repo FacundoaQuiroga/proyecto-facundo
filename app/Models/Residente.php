@@ -13,6 +13,9 @@ class Residente extends Model
     use SoftDeletes;
 
 
+    protected $guarded = [];
+
+
 
     protected  $primaryKey = 'user_rut';
     public $incrementing = false;

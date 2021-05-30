@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Subsidio extends Model
 {
     use HasFactory;
+
+
+    public function residente(){
+        return $this->belongsTo(Residente::class);
+    }
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class UsuarioController extends Controller
 {
@@ -17,7 +18,10 @@ class UsuarioController extends Controller
     }
     public function sesioncaducada()
     {
-        return view('vistasError.sesionCaducada');
+        if (auth()->user()->role_id != '1'){
+            return view('vistasError.sesionCaducada');
+        }
+
     }
 
 }

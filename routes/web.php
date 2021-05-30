@@ -57,8 +57,11 @@ Route::get('/admin/restaurar/{valor}',[AdministradorController::class, 'recupera
 Route::get('/admin/restaurar/{valor}/eliminar-definitivamente',[AdministradorController::class, 'EliminarResidente'])->name('admin.EliminarResidente');
 
 //vista importar residentes por excel
-Route::get('/admin/importar',[AdministradorController::class, 'importar'])->name('admin.importar');
+Route::get('/admin/importar',[AdministradorController::class, 'importarVista'])->name('admin.importar');
+Route::get('/admin/actualizar',[AdministradorController::class, 'actualizarVista'])->name('admin.actualizar');
 
+Route::Post('/admin/importar',[AdministradorController::class, 'importarExcel'])->name('admin.importar.excel');
+Route::Post('/admin/actualizar',[AdministradorController::class, 'actualizarExcel'])->name('admin.actualizar.excel');
 
 /*vista Restaurar users eliminado*/
 Route::get('/adminUsers/restaurar',[AdministradorController::class, 'restaurarUsers'])->name('adminUsers.restaurar');
@@ -73,7 +76,11 @@ Route::get('/adminUsers/restaurar/{valor}/eliminar-definitivamente',[Administrad
 Route::get('residentes/{user_rut}',[ResidenteController::class, 'show'])->name('residentes.show');
 Route::get('residentes',[ResidenteController::class, 'index'])->name('residentes.index');
 Route::get('residentes/{user_rut}/solicitud',[ResidenteController::class, 'solicitud'])->name('residentes.solicitud');
-Route::get('residentes/{user_rut}/subsidio',[ResidenteController::class, 'subsidio'])->name('residentes.subsidio');
+
+Route::get('/residentes/{user_rut}/subsidio',[ResidenteController::class, 'subsidio'])->name('residentes.subsidio');
+
+Route::get('/residentes/{user_rut}/subsidio/create', [ResidenteController::class, 'createSubsidio'])->name('subsidios.create');
+Route::post('/residentes/{user_rut}/subsidio', [ResidenteController::class, 'storeSubsidio'])->name('subsidios.store')->middleware('throttle:subsidio');
 
 
 /* estas son rutas para que el residente no entre al perfil de admin y para que admin no entre a perfil residente*/

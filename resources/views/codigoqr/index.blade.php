@@ -103,6 +103,7 @@
                                                 <div class="md-form form-sm mb-0">
                                                     <input type="text" id="form5" class="form-control form-control-sm" placeholder="{{ $datoresidente->nombres }}" disabled>
                                                     <label for="form5" class="">Nombres</label>
+                                                    <label for="form5" class="">Nombres</label>
                                                 </div>
 
                                             </div>

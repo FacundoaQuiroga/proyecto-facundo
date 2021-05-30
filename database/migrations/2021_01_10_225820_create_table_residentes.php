@@ -17,11 +17,11 @@ class CreateTableResidentes extends Migration
             $table->id();
             $table->text('nombres');
             $table->text('apellidos');
-            $table->string('user_rut');
+            $table->string('user_rut')->unique();
             $table->text('comuna');
-            $table->text('fecha_certificado');
-            $table->text('fecha_actualizacion');
-            $table->text('sector');
+            $table->text('fecha_certificado')->nullable();
+            $table->text('fecha_actualizacion')->nullable();
+            $table->text('sector')->nullable();
         });
     }
 

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Subsidio;
 use Illuminate\Http\Request;
 use App\Models\Residente;
 use App\Models\User;
@@ -57,7 +58,7 @@ class ResidenteController extends Controller
                 return view('vistasError.errorAcceso');
             }
 
-            return view('residente.index');
+
 
     }
 
@@ -183,8 +184,29 @@ class ResidenteController extends Controller
         }else{
             return view('errorAcceso');
         }
-
-
     }
+
+    // create de subsidio
+    public function createSubsidio()
+    {
+        return view('residentes.subsidio');
+    }
+
+    // store de subsidio para almacenar solicitudes de subsidio
+    public function storeSubsidio(Request $request, Subsidio $subsidio)
+    {
+        $subsidio = new Subsidio();
+        $subsidio->user_rut = $request->get('rut');
+        $subsidio->email = $request->get('email');
+        $subsidio->nombres = $request->get('nombres');
+        $subsidio->apellidos = $request->get('apellidos');
+        $subsidio->tipo_subsidio = $request->get('subsidio');
+        $subsidio->tramo = $request->get('tramo');
+        $subsidio->fecha_viaje = $request->get('fechaViaje');
+        $subsidio->save();
+
+        return back()->with('message', 'Solicitud de subsidio enviada con exito!');
+    }
+
 
 }

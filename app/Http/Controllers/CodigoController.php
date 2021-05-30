@@ -19,11 +19,13 @@ class CodigoController extends Controller
         if ($residenteDatos != null){
 
             $datoresidente = $residenteDatos;
+            $valor_rut = $datoresidente->user_rut;
+
             $valor_id = $residenteDatos->user_rut;
 
             $datoqr = QrCode::size(250)->generate( route('qrcode.show', $valor_id));
 
-            return view('codigoqr.index', compact('datoqr','datoresidente'));
+            return view('codigoqr.index', compact('datoqr','datoresidente','valor_rut'));
         }else{
             return view('vistasError.errorAcceso');
         }

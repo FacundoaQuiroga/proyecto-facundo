@@ -57,10 +57,10 @@
                                         <!-- Card content -->
                                         <div class="card-body card-body-cascade">
                                             <h1></h1>
-                                            <!-- Grid row -->
+
                                             <div class="row">
 
-                                                <!-- Grid column -->
+
                                                 <div class="col-lg-4">
 
                                                     <div class="md-form form-sm mb-0">
@@ -69,9 +69,7 @@
                                                     </div>
 
                                                 </div>
-                                                <!-- Grid column -->
 
-                                                <!-- Grid column -->
                                                 <div class="col-lg-4">
 
                                                     <div class="md-form form-sm mb-0">
@@ -80,9 +78,7 @@
                                                     </div>
 
                                                 </div>
-                                                <!-- Grid column -->
 
-                                                <!-- Grid column -->
                                                 <div class="col-lg-4">
 
                                                     <div class="md-form form-sm mb-0">
@@ -91,15 +87,13 @@
                                                     </div>
 
                                                 </div>
-                                                <!-- Grid column -->
+
 
                                             </div>
-                                            <!-- Grid row -->
 
-                                            <!-- Grid row -->
                                             <div class="row">
 
-                                                <!-- Grid column -->
+
                                                 <div class="col-md-6">
 
                                                     <div class="md-form form-sm mb-0">
@@ -108,9 +102,7 @@
                                                     </div>
 
                                                 </div>
-                                                <!-- Grid column -->
 
-                                                <!-- Grid column -->
                                                 <div class="col-md-6">
 
                                                     <div class="md-form form-sm mb-0">
@@ -119,13 +111,13 @@
                                                     </div>
 
                                                 </div>
-                                                <!-- Grid column -->
+
 
                                             </div>
 
                                             <div class="row">
 
-                                                <!-- Grid column -->
+
                                                 <div class="col-lg-4 col-md-12">
 
                                                     <div class="md-form form-sm mb-0">
@@ -134,9 +126,7 @@
                                                     </div>
 
                                                 </div>
-                                                <!-- Grid column -->
 
-                                                <!-- Grid column -->
                                                 <div class="col-lg-4 col-md-6">
 
                                                     <div class="md-form form-sm mb-0">
@@ -145,13 +135,9 @@
                                                     </div>
 
                                                 </div>
-                                                <!-- Grid column -->
+
                                             </div>
-                                            <!-- Grid row -->
 
-                                            <!-- Grid row -->
-
-                                            <!-- Grid row -->
                                             <div class="row">
 
                                                 <!-- Grid column -->

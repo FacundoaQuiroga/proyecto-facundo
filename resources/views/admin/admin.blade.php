@@ -71,10 +71,14 @@
                                                 <a class="hoverable alert alert-warning" href="{{route('admin.restaurar')}}">Lista de residentes eliminados</a>
                                             </div>
 
-                                            <!--MODIFICAR RUTA ENVIAR A VISTA DE IMPORTACION DE EXCEL 'INSERT EN TABLA RESIDENTE' -->
                                             <div class="d-flex justify-content-start">
                                                 <i class=" info-color py-4 mr-3 z-depth-2"></i>
                                                 <a class="hoverable alert alert-success" href="{{route('admin.importar')}}">Importar Residentes</a>
+                                            </div>
+
+                                            <div class="d-flex justify-content-start">
+                                                <i class=" info-color py-4 mr-3 z-depth-2"></i>
+                                                <a class="hoverable alert alert-success" href="{{route('admin.actualizar')}}">Actualizar Residentes</a>
                                             </div>
 
                                             <div class="row">
