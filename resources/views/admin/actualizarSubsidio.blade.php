@@ -30,7 +30,7 @@
                         @endif
                         <!-- Card image -->
                             <div class="view view-cascade gradient-card-header primary-color">
-                                <h2 class="h2-responsive mb-0 font-weight-bold">Importar Residentes</h2>
+                                <h2 class="h2-responsive mb-0 font-weight-bold">Actualizar Subsidios</h2>
                             </div>
 
 
@@ -58,7 +58,7 @@
                                                 <table class="table">
                                                     <br>
 
-                                                    <form action="{{ route('admin.actualizar.excel') }}" method="post" enctype="multipart/form-data">
+                                                    <form action="{{ route('admin.actualizarSubsidio.excel') }}" method="post" enctype="multipart/form-data">
                                                         @csrf
 
 

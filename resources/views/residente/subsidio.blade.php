@@ -113,8 +113,11 @@
                                                     <div class="col-lg-4 col-md-4">
 
                                                         <div class="md-form form-sm mb-0">
-                                                            <input type="text" id="form11" class="form-control form-control-sm" name="subsidio" placeholder="aereo" >
-                                                            <label for="form11" class="">Tipo de subsidio</label>
+                                                                <select name="subsidio" class="browser-default custom-select">
+                                                                    @foreach($categoria as $cat)
+                                                                        <option selected value="{{$cat->tipo_subsidio}}">{{$cat->tipo_subsidio}}</option>
+                                                                    @endforeach
+                                                                </select>
                                                         </div>
 
                                                     </div>
@@ -122,18 +125,28 @@
                                                     <div class="col-lg-4 col-md-4">
 
                                                         <div class="md-form form-sm mb-0">
-                                                            <input type="text" id="form12" class="form-control form-control-sm" name="tramo" placeholder="puertomontt-chaiten" >
-                                                            <label for="form12" class="">Tramo</label>
+                                                            <select name="tramo"  class="browser-default custom-select">
+                                                                @foreach($tramo as $tram)
+                                                                    <option selected value="{{$tram->tipo_tramo}}">{{$tram->tipo_tramo}}</option>
+                                                                @endforeach
+                                                            </select>
                                                         </div>
 
                                                     </div>
 
                                                     <div class="col-lg-4 col-md-4">
 
+                                                        <div id="date-picker-example" class="md-form md-outline input-with-post-icon" inline="true">
+                                                            <input name="fechaViaje" placeholder="Seleccione fecha"  type="text"  id="datepicker" class="form-control datepicker">
+                                                            <label>Fecha de viaje</label>
+                                                            <i class="fas fa-calendar input-prefix"></i>
+                                                        </div>
+                                                        <!--
                                                         <div class="md-form form-sm mb-0">
                                                             <input type="text" id="form13" class="form-control form-control-sm" name="fechaViaje" placeholder="15-mar-21" >
                                                             <label for="form13" class="">Fecha de viaje</label>
                                                         </div>
+                                                        -->
 
                                                     </div>
 
@@ -209,8 +222,23 @@
         minScrollbarLength: 20
     });
 
-    // Data Picker Initialization
-    $('.datepicker').pickadate();
+    // Data Picker Initialization datepiker español
+    $('.datepicker').pickadate({
+        monthsFull: [ 'enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre' ],
+        monthsShort: [ 'ene', 'feb', 'mar', 'abr', 'may', 'jun', 'jul', 'ago', 'sep', 'oct', 'nov', 'dic' ],
+        weekdaysFull: [ 'domingo', 'lunes', 'martes', 'miércoles', 'jueves', 'viernes', 'sábado' ],
+        weekdaysShort: [ 'dom', 'lun', 'mar', 'mié', 'jue', 'vie', 'sáb' ],
+        today: 'hoy',
+        clear: 'borrar',
+        close: 'cerrar',
+        firstDay: 1,
+
+        format: 'yy-mm-dd'
+    });
+
+
+
+
 
     // Material Select Initialization
     $(document).ready(function () {

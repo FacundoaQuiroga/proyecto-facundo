@@ -78,8 +78,15 @@
 
                                             <div class="d-flex justify-content-start">
                                                 <i class=" info-color py-4 mr-3 z-depth-2"></i>
+                                                <a class="hoverable alert alert-success" href="{{route('admin.exportar.excel')}}">Exportar Residentes</a>
+                                            </div>
+
+                                            <!--
+                                            <div class="d-flex justify-content-start">
+                                                <i class=" info-color py-4 mr-3 z-depth-2"></i>
                                                 <a class="hoverable alert alert-success" href="{{route('admin.actualizar')}}">Actualizar Residentes</a>
                                             </div>
+                                            -->
 
                                             <div class="row">
                                                 <div class="col">

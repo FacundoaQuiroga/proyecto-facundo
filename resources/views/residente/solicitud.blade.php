@@ -58,13 +58,30 @@
                                         <div class="row">
                                             <div class="col">
                                                 <table class="table">
+                                                    <thead>
+                                                    <tr class="info">
+                                                        <th>nombres</th>
+                                                        <th>apellidos</th>
+                                                        <th>subsidio</th>
+                                                        <th>tramo</th>
+                                                        <th>fecha</th>
+                                                        <th>estado</th>
+                                                    </tr>
+                                                    </thead>
 
-                                                    <tr>
-                                                        <td>1  </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>2</td>
-                                                    </tr>
+                                                    @foreach($subsidio as $dato)
+
+                                                        <tbody>
+                                                            <tr>
+                                                                <td>{{ $dato->nombres }}</td>
+                                                                <td>{{ $dato->apellidos }}</td>
+                                                                <td>{{ $dato->tipo_subsidio }}</td>
+                                                                <td>{{ $dato->tramo }}</td>
+                                                                <td>{{ $dato->fecha_viaje }}</td>
+                                                                <td>{{ $dato->estado }}</td>
+                                                            </tr>
+                                                        </tbody>
+                                                    @endforeach
 
                                                 </table>
                                             </div>

@@ -62,7 +62,11 @@ class RouteServiceProvider extends ServiceProvider
 
 
         RateLimiter::for('subsidio', function (Request $request) {
-            return Limit::perDay(1);
+            //deberia usar un by y colocarle el campo estado si es aereo 2 veces al mes
+            //si es distinto de aereo entonces las veces que quiera el usuario
+            return Limit::perDay(2);
         });
+
+
     }
 }

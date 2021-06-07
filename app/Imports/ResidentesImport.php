@@ -17,7 +17,7 @@ class ResidentesImport implements ToModel,WithHeadingRow,WithUpserts
     * @return \Illuminate\Database\Eloquent\Model|null
     */
 
-
+//OJO SI QUIERES QUE NO TE DUPLIQUE LOS DATOS EN LA TABLA ENTONCES COLOCALE UNIQUE A LA COLUMNA USER_RUT SINO QUITALE EL UNIQUE.
     public function model(array $row)
     {
 

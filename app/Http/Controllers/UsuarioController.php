@@ -18,9 +18,9 @@ class UsuarioController extends Controller
     }
     public function sesioncaducada()
     {
-        if (auth()->user()->role_id != '1'){
+
             return view('vistasError.sesionCaducada');
-        }
+
 
     }
 

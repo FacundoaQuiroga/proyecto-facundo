@@ -2,14 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Categoria;
+use App\Models\Tramo;
 use App\Models\Subsidio;
 use Illuminate\Http\Request;
 use App\Models\Residente;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
-
-
-
 
 
 
@@ -28,7 +27,6 @@ class ResidenteController extends Controller
      */
     public function index()
     {
-
 
             /*$datos = Residente::where('user_rut', auth()->user()->rut)->paginate();
 
@@ -97,15 +95,20 @@ class ResidenteController extends Controller
         // en el modelo se le cambio la llave primaria y el increment a false
 
         $residente = Residente::find($user_rut);
+        $subsidio = Subsidio::where('user_rut', $user_rut)
+            ->orderBy('fecha_viaje','desc')
+            ->first();
 
         if ($residente != null){
             if( $residente->user_rut == auth()->user()->rut ){
-                return view('residente.show', compact('residente'));
+
+
+                return view('residente.show', ['residente' => $residente, 'subsidio' => $subsidio]);
             }else{
-                return view('errorAcceso');
+                return view('vistasError.errorAcceso');
             }
         }else{
-            return view('errorAcceso');
+            return view('vistasError.errorAcceso');
         }
 
 
@@ -148,20 +151,24 @@ class ResidenteController extends Controller
     // vista que lista las solicitudes de el residente
     public function solicitud($user_rut)
     {
-        //aqui pase en vez de id un user_rut para validar que este ingresando por
-        //ruta el usuario y no pueda entrar a los datos de otro usuario, ademas
-        // en el modelo se le cambio la llave primaria y el increment a false
 
         $residente = Residente::find($user_rut);
 
+
         if ($residente != null){
             if( $residente->user_rut == auth()->user()->rut ){
-                return view('residente.solicitud', compact('residente'));
+
+                $subsidio = Subsidio::where('user_rut', $residente->user_rut)
+                    ->orderBy('fecha_viaje','desc')
+                    ->paginate();
+                //$categoria = Categoria::where('tipo_subsidio', $subsidio->tipo_subsidio)->paginate();
+
+                return view('residente.solicitud', compact('subsidio'));
             }else{
-                return view('errorAcceso');
+                return view('vistasError/errorAcceso');
             }
         }else{
-            return view('errorAcceso');
+            return view('vistasError/errorAcceso');
         }
 
 
@@ -174,10 +181,14 @@ class ResidenteController extends Controller
         // en el modelo se le cambio la llave primaria y el increment a false
 
         $residente = Residente::find($user_rut);
+        $categoria = Categoria::all();
+        $tramo = Tramo::all();
+
+        //dump($categoria);
 
         if ($residente != null){
             if( $residente->user_rut == auth()->user()->rut ){
-                return view('residente.subsidio', compact('residente'));
+                return view('residente.subsidio', ['residente' => $residente, 'categoria' => $categoria, 'tramo' => $tramo]);
             }else{
                 return view('errorAcceso');
             }
@@ -204,6 +215,14 @@ class ResidenteController extends Controller
         $subsidio->tramo = $request->get('tramo');
         $subsidio->fecha_viaje = $request->get('fechaViaje');
         $subsidio->save();
+        //$categoria = $request->get('subsidio');
+        //dump($categoria);
+
+//        if ($request->get('subsidio') == "aereo"){
+//            $this->middleware('throttle:2,1');
+//        }else{
+//
+//        }
 
         return back()->with('message', 'Solicitud de subsidio enviada con exito!');
     }

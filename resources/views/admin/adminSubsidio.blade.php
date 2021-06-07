@@ -74,24 +74,64 @@
                                             <!--MODIFICAR RUTA ENVIAR A VISTA DE IMPORTACION DE EXCEL 'INSERT EN TABLA RESIDENTE' -->
                                             <div class="d-flex justify-content-start">
                                                 <i class=" info-color py-4 mr-3 z-depth-2"></i>
-                                                <a class="hoverable alert alert-primary" href="{{route('admin.importar')}}">Exportar Subsidios</a>
+                                                <a class="hoverable alert alert-success" href="{{route('admin.importarSubsidio')}}">Importar subsidios como excel</a>
                                             </div>
+
+                                            <div class="d-flex justify-content-start">
+                                                <i class=" info-color py-4 mr-3 z-depth-2"></i>
+                                                <a class="hoverable alert alert-primary" href="{{route('admin.exportarSubsidio')}}">Exportar subsidios como excel</a>
+                                            </div>
+
+{{--                                            <div class="alert alert-info py-4 d-flex justify-content-start ">--}}
+{{--                                                --}}
+{{--                                                <div id="date-picker-example" class="input-with-previous-icon" inline="true">--}}
+{{--                                                    <input name="desde" placeholder="Seleccione fecha"  type="text"  id="datepicker" class="form-control datepicker">--}}
+{{--                                                    <label>Desde</label>--}}
+{{--                                                    <i class="fas fa-calendar input-prefix"></i>--}}
+{{--                                                </div>--}}
+
+{{--                                                <div id="date-picker-example" class=" input-with-post-icon" inline="true">--}}
+{{--                                                    <input name="hasta" placeholder="Seleccione fecha"  type="text"  id="datepicker" class="form-control datepicker">--}}
+{{--                                                    <label>Hasta</label>--}}
+{{--                                                    <i class="fas fa-calendar input-prefix"></i>--}}
+{{--                                                </div>--}}
+{{--                                            </div>--}}
+
+                                            <div class="d-flex justify-content-start">
+                                                <i class=" info-color py-4 mr-3 z-depth-2"></i>
+                                                <a class="hoverable alert alert-warning" href="{{route('admin.actualizarSubsidio')}}">Actualizar Subsidios</a>
+                                            </div>
+
 
                                             <div class="row">
                                                 <div class="col">
                                                     <table class="table">
-
+                                                        <thead>
+                                                            <tr class="info">
+                                                                <th>nombres</th>
+                                                                <th>apellidos</th>
+                                                                <th>subsidio</th>
+                                                                <th>tramo</th>
+                                                                <th>fecha</th>
+                                                                <th>estado</th>
+                                                            </tr>
+                                                        </thead>
                                                         @foreach($datos as $dato)
-
-                                                               <tr>
-                                                                   <td>{{ $dato->nombres }}</td>
-                                                                   <td>{{ $dato->apellidos }}</td>
+                                                            <tbody>
+                                                            <tr>
+                                                                <td>{{ $dato->nombres }}</td>
+                                                                <td>{{ $dato->apellidos }}</td>
+                                                                <td>{{ $dato->tipo_subsidio }}</td>
+                                                                <td>{{ $dato->tramo }}</td>
+                                                                <td>{{ $dato->fecha_viaje }}</td>
+                                                                <td>{{ $dato->estado }}</td>
+                                                            <!--
                                                                    <td><a class="hoverable alert alert-success" href="{{route('admin.edit', $dato->user_rut)}}">editar</a></td>
                                                                    <td><a class="hoverable alert alert-danger" href="{{route('admin.delete', $dato->user_rut)}}">eliminar</a></td>
-                                                               </tr>
-
+                                                                   -->
+                                                            </tr>
+                                                            </tbody>
                                                         @endforeach
-
                                                     </table>
                                                     {{$datos->links()}}
                                                 </div>

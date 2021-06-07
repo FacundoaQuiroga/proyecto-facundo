@@ -1,5 +1,5 @@
 
-@extends('layouts.links')
+@extends('layouts.linksAdmin')
 
 @section('content')
 <!-- Main Navigation -->
@@ -30,7 +30,7 @@
                         @endif
                         <!-- Card image -->
                             <div class="view view-cascade gradient-card-header primary-color">
-                                <h2 class="h2-responsive mb-0 font-weight-bold">Bienvenido : {{ Auth::user()->name }}</h2>
+                                <h2 class="h2-responsive mb-0 font-weight-bold">Importar Subsidios</h2>
                             </div>
 
 
@@ -49,142 +49,34 @@
                                         <div class="admin-up d-flex justify-content-start">
                                             <i class="fas fa-users info-color py-4 mr-3 z-depth-2"></i>
                                             <div class="data">
-                                                <h5 class="font-weight-bold dark-grey-text">Ficha de Residente </h5>
+                                                <h5 class="font-weight-bold dark-grey-text">Importe archivo en formato Excel</h5>
                                             </div>
                                         </div>
                                         <!-- Card Data -->
+                                        <div class="row">
+                                            <div class="col">
+                                                <table class="table">
+                                                    <br>
 
-                                        <!-- Card content -->
-                                        <div class="card-body card-body-cascade">
-                                            <h1></h1>
-
-                                            <div class="row">
+                                                    <form action="{{ route('admin.importarSubsidio.excel') }}" method="post" enctype="multipart/form-data">
+                                                        @csrf
 
 
-                                                <div class="col-lg-4">
+                                                        <input class="form-control form-control-lg" id="formFileLg" type="file" name="file">
+                                                        <br>
+                                                        <br>
 
-                                                    <div class="md-form form-sm mb-0">
-                                                        <input type="text" id="form12" class="form-control form-control-sm" placeholder="{{ Auth::user()->rut }}" disabled>
-                                                        <label for="form12" class="">RUT</label>
-                                                    </div>
+                                                        @if(Session::has('message'))
+                                                            <p>{{ Session::get('message') }}</p>
+                                                        @endif
+                                                        <button class="hoverable alert alert-success">Importar Excel Subsidio</button>
+                                                    </form>
 
-                                                </div>
 
-                                                <div class="col-lg-4">
-
-                                                    <div class="md-form form-sm mb-0">
-                                                        <input type="text" id="form3" class="form-control form-control-sm" placeholder="{{ Auth::user()->email }}" disabled>
-                                                        <label for="form3" class="">Email</label>
-                                                    </div>
-
-                                                </div>
-
-                                                <div class="col-lg-4">
-
-                                                    <div class="md-form form-sm mb-0">
-                                                        <input type="text" id="form4" class="form-control form-control-sm" disabled>
-                                                        <label for="form4" class="disabled">Tipo de Usuario</label>
-                                                    </div>
-
-                                                </div>
-
+                                                </table>
 
                                             </div>
-
-                                            <div class="row">
-
-
-                                                <div class="col-md-6">
-
-                                                    <div class="md-form form-sm mb-0">
-                                                        <input type="text" id="form5" class="form-control form-control-sm" placeholder="{{ $residente->nombres }}" disabled>
-                                                        <label for="form5" class="">Nombres</label>
-                                                    </div>
-
-                                                </div>
-
-                                                <div class="col-md-6">
-
-                                                    <div class="md-form form-sm mb-0">
-                                                        <input type="text" id="form5" class="form-control form-control-sm" placeholder="{{ $residente->apellidos }}" disabled>
-                                                        <label for="form5" class="">Apellidos</label>
-                                                    </div>
-
-                                                </div>
-
-
-                                            </div>
-
-                                            <div class="row">
-
-
-                                                <div class="col-lg-4 col-md-12">
-
-                                                    <div class="md-form form-sm mb-0">
-                                                        <input type="text" id="form7" class="form-control form-control-sm" placeholder="{{ $residente->comuna }}" disabled>
-                                                        <label for="form7" class="">Comuna</label>
-                                                    </div>
-
-                                                </div>
-
-                                                <div class="col-lg-4 col-md-6">
-
-                                                    <div class="md-form form-sm mb-0">
-                                                        <input type="text" id="form8" class="form-control form-control-sm" placeholder="{{ $residente->sector }}" disabled>
-                                                        <label for="form8" class="">Sector</label>
-                                                    </div>
-
-                                                </div>
-
-                                            </div>
-
-                                            <div class="row">
-
-                                                <!-- Grid column -->
-                                                <div class="col-lg-4 col-md-4">
-
-                                                    <div class="md-form form-sm mb-0">
-                                                        <input type="text" id="form11" class="form-control form-control-sm" placeholder="{{ $subsidio->estado }}" disabled>
-                                                        <label for="form11" class="">Subsidio de Transporte</label>
-                                                    </div>
-
-                                                </div>
-                                                <!-- Grid column -->
-
-
-                                                <!-- Grid column -->
-                                                <div class="col-lg-4 col-md-4">
-
-                                                    <div class="md-form form-sm mb-0">
-                                                        <input type="text" id="form12" class="form-control form-control-sm" placeholder="{{ $residente->fecha_actualizacion }}" disabled>
-                                                        <label for="form12" class="">Certificado</label>
-                                                    </div>
-
-                                                </div>
-                                                <!-- Grid column -->
-                                                <!-- Grid column -->
-                                                <div class="col-lg-4 col-md-4">
-
-                                                    <div class="md-form form-sm mb-0">
-                                                        <input type="text" id="form13" class="form-control form-control-sm" placeholder="{{ $residente->fecha_certificado }}" disabled>
-                                                        <label for="form13" class="">Fecha Certificado</label>
-                                                    </div>
-
-                                                </div>
-                                                <!-- Grid column -->
-
-                                            </div>
-                                            <!-- Grid row -->
-
-                                            <!-- Grid row -->
-
-                                            <!-- Grid row -->
-
-
-
                                         </div>
-                                        <!-- Card content -->
-
                                     </div>
                                     <!-- Card -->
 

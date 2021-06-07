@@ -3,11 +3,15 @@
 namespace App\Http\Controllers;
 use App\Http\Middleware\EsAdmin;
 use App\Models\Residente;
+use App\Models\Subsidio;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Imports\ResidentesImport;
+use App\Exports\ResidentesExport;
+use App\Exports\SubsidiosExport;
+use App\Imports\SubsidiosImport;
 
 
 
@@ -197,15 +201,19 @@ class AdministradorController extends Controller
     // importar residentes acceso solo para Administrador
     /////////////////////////////////////////////////////
 
+    // EXCEL PARA RESIDENTE
+
     /*vista importar residentes por excel*/
     public function importarVista(){
 
         return view('admin.importar');
     }
-    public function actualizarVista(){
 
-        return view('admin.actualizar');
-    }
+    //VISTA DE ACTUALIZAR RESIDENTES
+//    public function actualizarVista(){
+//
+//        return view('admin.actualizar');
+//    }
 
     /*importacion de excel residentes*/
     public function importarExcel(Request $request){
@@ -216,45 +224,103 @@ class AdministradorController extends Controller
         return back()->with('message', 'Importacion de residentes completada');
     }
 
-    public function actualizarExcel(Request $request){
+    /*EXPORTACION DE RESIDENTES POR EXCEL*/
+    public function exportarExcel(Request $request){
 
-        $file = $request->file('file');
-        $residentes = Excel::toCollection(new ResidentesImport, $file);
-        foreach($residentes[0] as $residente){
-            //dd($residente['nombres']);
-
-            Residente::where('user_rut', $residente['rut'])->update([
-                'nombres' => $residente['nombres'],
-                'apellidos' => $residente['apellidos'],
-                'user_rut' => $residente['rut'],
-                'comuna' => $residente['comuna'],
-                'fecha_certificado' => $residente['fechacert'],
-                'fecha_actualizacion' => $residente['fechaactualizacion'],
-                'sector' => $residente['sector'],
-            ]);
-        }
-
-
-        return back()->with('message', 'Actualizacion de residentes completada');
+        return Excel::download(new ResidentesExport, 'residentes.xlsx');
     }
+// no es necesario actualizar Residentes porque con el importar basta para importar y actualizar gracias a el uniquekey en user_rut
+//    public function actualizarExcel(Request $request){
+//
+//        $file = $request->file('file');
+//        $residentes = Excel::toCollection(new ResidentesImport, $file);
+//        foreach($residentes[0] as $residente){
+//            //dd($residente['nombres']);
+//
+//            Residente::where('user_rut', $residente['rut'])->update([
+//                'nombres' => $residente['nombres'],
+//                'apellidos' => $residente['apellidos'],
+//                'user_rut' => $residente['rut'],
+//                'comuna' => $residente['comuna'],
+//                'fecha_certificado' => $residente['fechacert'],
+//                'fecha_actualizacion' => $residente['fechaactualizacion'],
+//                'sector' => $residente['sector'],
+//            ]);
+//        }
+//
+//        return back()->with('message', 'Actualizacion de residentes completada');
+//    }
 
     /////////////////////////////////////////////////////
     // Solicitudes de subsidio acceso solo para Administrador
     /////////////////////////////////////////////////////
 
+    //LISTADO SOLICITUDES DE SUBSIDIO
     public function indexSubsidio(Request $request) {
         //buscador en el crud para buscar subsidios de residentes
         if ($request) {
-
             $query = trim($request->get('search'));
-
-            $datos = Residente::where('nombres', 'LIKE', '%' . $query . '%')
+            $datos = Subsidio::where('nombres', 'LIKE', '%' . $query . '%')
                 ->orWhere('apellidos', 'LIKE', '%' . $query . '%')
-                ->orderBy('id','asc')
+                ->orderBy('fecha_viaje','desc')
                 ->paginate();
+            //dump($datos);
             return view('admin.adminSubsidio', ['datos' => $datos, 'search' => $query]);
         }
+    }
 
+    /*VISTA IMPORTAR SUBSIDIOS POR EXCEL*/
+    public function importarVistaSubsidio(){
+
+        return view('admin.importarSubsidio');
+    }
+    //VISTA ACTUALIZAR SUBSIDIOS
+    public function actualizarVistaSubsidio(){
+
+        return view('admin.actualizarSubsidio');
+    }
+
+    /*ACTUALIZAR SUBSIDIOS*/
+    public function actualizarExcelSubsidio(Request $request){
+
+        $file = $request->file('file');
+        $subsidios = Excel::toCollection(new SubsidiosImport, $file);
+        foreach($subsidios[0] as $subsidio){
+            //dd($subsidio['nombres']);
+
+            Subsidio::where('user_rut', $subsidio['rut'])->update([
+                'nombres' => $subsidio['nombres'],
+                'apellidos' => $subsidio['apellidos'],
+                'user_rut' => $subsidio['rut'],
+                'email' => $subsidio['email'],
+                'tipo_subsidio' => $subsidio['tipo_de_subsidio'],
+                'tramo' => $subsidio['tramo'],
+                'fecha_viaje' => $subsidio['fecha_de_viaje'],
+                'estado' => $subsidio['estado'],
+            ]);
+        }
+
+        return back()->with('message', 'Actualizacion de subsidios completada');
+    }
+
+
+    /*IMPORTACION DE SUBSIDIOS POR EXCEL*/
+    public function importarSubsidio(Request $request){
+        $file = $request->file('file');
+        Excel::import(new SubsidiosImport, $file);
+
+        return back()->with('message', 'Importacion de residentes completada');
+    }
+
+
+
+    /*EXPORTACION DE SUBSIDIOS POR EXCEL*/
+    public function exportarSubsidio(Request $request){
+        //$fecha1 = $request->desde('desde');
+        //$fecha2 = $request->hasta('hasta');
+
+
+        return Excel::download(new SubsidiosExport, 'subsidios.xlsx')->forYear(2021);
     }
 
 }

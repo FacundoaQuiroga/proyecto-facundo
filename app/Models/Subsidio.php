@@ -9,6 +9,9 @@ class Subsidio extends Model
 {
     use HasFactory;
 
+    protected $guarded = [];
+    //si le agregas las llave primaria a user_rut te quita el guion con el numero verificador nose porque? pero tampoco sirve aca
+
 
     public function residente(){
         return $this->belongsTo(Residente::class);

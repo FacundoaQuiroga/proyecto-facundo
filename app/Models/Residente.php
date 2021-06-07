@@ -27,4 +27,8 @@ class Residente extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function subsidio(){
+        return $this->hasOne(Subsidio::class);
+    }
+
 }

@@ -68,14 +68,13 @@
                                     <a href="/adminSubsidio">Solicitudes de subsidio</a>
                                 </li>
 
-                                @if(Auth::user()->role_id == '1')
                                     <li>
                                         <a href="{{route('residentes.index')}}">Perfil residente</a>
                                     </li>
                                     <li>
                                         <a href="{{route('qrcode.index')}}">Codigo QR residente</a>
                                     </li>
-                                @endif
+
                             </ul>
                         </div>
                     </li>

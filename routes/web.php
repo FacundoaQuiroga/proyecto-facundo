@@ -16,6 +16,8 @@ use App\Models\Residente;
 |
 */
 
+
+
 /*ruta home bienvenida y donde estan los links para los perfiles*/
 Route::get('/', [\App\Http\Controllers\HomeController::class, 'index']);
 
@@ -59,9 +61,13 @@ Route::get('/admin/restaurar/{valor}/eliminar-definitivamente',[AdministradorCon
 //vista importar residentes por excel
 Route::get('/admin/importar',[AdministradorController::class, 'importarVista'])->name('admin.importar');
 Route::get('/admin/actualizar',[AdministradorController::class, 'actualizarVista'])->name('admin.actualizar');
-
+//importacion del archivo excel
 Route::Post('/admin/importar',[AdministradorController::class, 'importarExcel'])->name('admin.importar.excel');
-Route::Post('/admin/actualizar',[AdministradorController::class, 'actualizarExcel'])->name('admin.actualizar.excel');
+//la ruta actualizar no sirve para agregar nuevos registros solo para actualizar los campos de los que ya se encuentran
+//Route::Post('/admin/actualizar',[AdministradorController::class, 'actualizarExcel'])->name('admin.actualizar.excel');
+
+//EXPORTACION DEL ARCHIVO EXCEL RESIDENTE
+Route::get('/admin/exportar',[AdministradorController::class, 'exportarExcel'])->name('admin.exportar.excel');
 
 /*vista Restaurar users eliminado*/
 Route::get('/adminUsers/restaurar',[AdministradorController::class, 'restaurarUsers'])->name('adminUsers.restaurar');
@@ -77,10 +83,25 @@ Route::get('residentes/{user_rut}',[ResidenteController::class, 'show'])->name('
 Route::get('residentes',[ResidenteController::class, 'index'])->name('residentes.index');
 Route::get('residentes/{user_rut}/solicitud',[ResidenteController::class, 'solicitud'])->name('residentes.solicitud');
 
+//Subsidio vista
 Route::get('/residentes/{user_rut}/subsidio',[ResidenteController::class, 'subsidio'])->name('residentes.subsidio');
-
+//solicitud de subsidio create
 Route::get('/residentes/{user_rut}/subsidio/create', [ResidenteController::class, 'createSubsidio'])->name('subsidios.create');
-Route::post('/residentes/{user_rut}/subsidio', [ResidenteController::class, 'storeSubsidio'])->name('subsidios.store')->middleware('throttle:subsidio');
+Route::post('/residentes/{user_rut}/subsidio', [ResidenteController::class, 'storeSubsidio'])->name('subsidios.store')->middleware('auth', 'throttle:3,1440');
+
+/* IMPORTACION EXCEL SUBSIDIO*/
+//vista
+Route::get('/admin/importarSubsidio',[AdministradorController::class, 'importarVistaSubsidio'])->name('admin.importarSubsidio');
+//actualizar excel subsidio
+Route::get('/admin/actualizarSubsidio',[AdministradorController::class, 'actualizarVistaSubsidio'])->name('admin.actualizarSubsidio');
+//la ruta actualizar no sirve para agregar nuevos registros solo para actualizar los campos de los que ya se encuentran
+Route::Post('/admin/actualizarSubsidio',[AdministradorController::class, 'actualizarExcelSubsidio'])->name('admin.actualizarSubsidio.excel');
+
+//importacion subsidio
+Route::Post('/admin/importarSubsidio',[AdministradorController::class, 'importarSubsidio'])->name('admin.importarSubsidio.excel');
+
+/*  EXPORTACION EXCEL SUBSIDIO */
+Route::get('/admin/exportarSubsidio',[AdministradorController::class, 'exportarSubsidio'])->name('admin.exportarSubsidio');
 
 
 /* estas son rutas para que el residente no entre al perfil de admin y para que admin no entre a perfil residente*/
