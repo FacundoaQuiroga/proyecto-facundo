@@ -30,7 +30,7 @@
                         @endif
                         <!-- Card image -->
                             <div class="view view-cascade gradient-card-header primary-color">
-                                <h2 class="h2-responsive mb-0 font-weight-bold">Importar Residentes</h2>
+                                <h2 class="h2-responsive mb-0 font-weight-bold">Exportar Subsidios</h2>
                             </div>
 
 
@@ -49,7 +49,7 @@
                                         <div class="admin-up d-flex justify-content-start">
                                             <i class="fas fa-users info-color py-4 mr-3 z-depth-2"></i>
                                             <div class="data">
-                                                <h5 class="font-weight-bold dark-grey-text">Importe archivo en formato Excel</h5>
+                                                <h5 class="font-weight-bold dark-grey-text">Exporte archivo en formato Excel</h5>
                                             </div>
                                         </div>
                                         <!-- Card Data -->
@@ -57,22 +57,33 @@
                                             <div class="col">
                                                 <table class="table">
                                                     <br>
-
-                                                    <form action="{{ route('admin.importar.excel') }}" method="post" enctype="multipart/form-data">
+                                                    <form action="{{route('admin.exportarSubsidio')}}" method="post">
                                                         @csrf
 
+                                                        <div class="alert alert-info py-4 d-flex justify-content-start ">
 
-                                                        <input class="form-control form-control-lg" id="formFileLg" type="file" name="file">
-                                                        <br>
-                                                        <br>
+                                                            <div class="col-lg-3">
+                                                                <label>Elegir año para exportar</label>
+                                                                <select name="fecha" class="browser-default custom-select">
+                                                                    <option selected value="2021">2021</option>
+                                                                    <option value="2022">2022</option>
+                                                                    <option value="2023">2023</option>
+                                                                    <option value="2024">2024</option>
+                                                                    <option value="2025">2025</option>
+                                                                    <option value="2026">2026</option>
+                                                                    <option value="2027">2027</option>
+                                                                    <option value="2028">2028</option>
+                                                                </select>
+                                                            </div>
 
-                                                        @if(Session::has('message'))
-                                                            <p>{{ Session::get('message') }}</p>
-                                                        @endif
-                                                        <button class="hoverable alert alert-success">Importar Excel</button>
+                                                            <div class="d-flex justify-content-start mt-8">
+                                                                <i class=" info-color py-4 mr-3 z-depth-2"></i>
+                                                                <button type="submit" class="hoverable alert alert-primary" href="">Exportar subsidios como excel</button>
+                                                            </div>
+
+                                                        </div>
+
                                                     </form>
-
-
                                                 </table>
 
                                             </div>

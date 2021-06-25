@@ -56,6 +56,10 @@ Route::put('/adminUsers/{valor}/destroyUsers',[AdministradorController::class, '
 /*vista Restaurar residente eliminado */
 Route::get('/admin/restaurar',[AdministradorController::class, 'restaurar'])->name('admin.restaurar');
 Route::get('/admin/restaurar/{valor}',[AdministradorController::class, 'recuperarResidente'])->name('admin.recuperarResidente');
+
+//HISTORIAL SUBSIDIO
+Route::get('/admin/subsidioHistorial/{valor}/',[AdministradorController::class, 'HistorialResidente'])->name('admin.HistorialResidente');
+
 Route::get('/admin/restaurar/{valor}/eliminar-definitivamente',[AdministradorController::class, 'EliminarResidente'])->name('admin.EliminarResidente');
 
 //vista importar residentes por excel
@@ -87,8 +91,8 @@ Route::get('residentes/{user_rut}/solicitud',[ResidenteController::class, 'solic
 Route::get('/residentes/{user_rut}/subsidio',[ResidenteController::class, 'subsidio'])->name('residentes.subsidio');
 //solicitud de subsidio create
 Route::get('/residentes/{user_rut}/subsidio/create', [ResidenteController::class, 'createSubsidio'])->name('subsidios.create');
-Route::post('/residentes/{user_rut}/subsidio', [ResidenteController::class, 'storeSubsidio'])->name('subsidios.store')->middleware('auth', 'throttle:3,1440');
-
+Route::post('/residentes/{user_rut}/subsidio', [ResidenteController::class, 'storeSubsidio'])->name('subsidios.store');
+//->middleware('auth', 'throttle:3,1440')
 /* IMPORTACION EXCEL SUBSIDIO*/
 //vista
 Route::get('/admin/importarSubsidio',[AdministradorController::class, 'importarVistaSubsidio'])->name('admin.importarSubsidio');
@@ -100,8 +104,10 @@ Route::Post('/admin/actualizarSubsidio',[AdministradorController::class, 'actual
 //importacion subsidio
 Route::Post('/admin/importarSubsidio',[AdministradorController::class, 'importarSubsidio'])->name('admin.importarSubsidio.excel');
 
+//vista exportacion subsidio
+Route::get('/admin/exportarVistaSubsidio',[AdministradorController::class, 'exportarVistaSubsidio'])->name('admin.exportarVistaSubsidio');
 /*  EXPORTACION EXCEL SUBSIDIO */
-Route::get('/admin/exportarSubsidio',[AdministradorController::class, 'exportarSubsidio'])->name('admin.exportarSubsidio');
+Route::post('/admin/exportarSubsidio',[AdministradorController::class, 'exportarSubsidio'])->name('admin.exportarSubsidio');
 
 
 /* estas son rutas para que el residente no entre al perfil de admin y para que admin no entre a perfil residente*/

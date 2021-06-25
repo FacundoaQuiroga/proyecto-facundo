@@ -2,7 +2,9 @@
 
 namespace App\Exports;
 
+use App\Exports\Sheets\SubsidiosPerMonthSheet;
 use App\Models\Subsidio;
+use Maatwebsite\Excel\Concerns\Exportable;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Concerns\WithMultipleSheets;
@@ -10,6 +12,10 @@ use Maatwebsite\Excel\Concerns\WithMultipleSheets;
 
 class SubsidiosExport implements FromCollection,WithHeadings,WithMultipleSheets
 {
+
+    use Exportable;
+
+
     /**
     * @return \Illuminate\Support\Collection
     */
@@ -48,9 +54,9 @@ class SubsidiosExport implements FromCollection,WithHeadings,WithMultipleSheets
 
     public function sheets(): array
     {
-        $sheets = [];
-        foreach(range(1, 12) as $month){
-            $sheets = [] = new SubsidiosPerMonth($this->year, $month);
-        }
+        return collect(range(1, 12))->map(function($month){
+            return new SubsidiosPerMonthSheet($this->year, $month);
+        })->toArray();
+
     }
 }

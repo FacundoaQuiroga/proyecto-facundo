@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Residente;
+use App\Models\Subsidio;
 use Illuminate\Http\Request;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
@@ -16,6 +17,8 @@ class CodigoController extends Controller
 
         $residenteDatos = Residente::where('user_rut', auth()->user()->rut)->first();
 
+
+
         if ($residenteDatos != null){
 
             $datoresidente = $residenteDatos;
@@ -23,9 +26,18 @@ class CodigoController extends Controller
 
             $valor_id = $residenteDatos->user_rut;
 
+
+
             $datoqr = QrCode::size(250)->generate( route('qrcode.show', $valor_id));
 
-            return view('codigoqr.index', compact('datoqr','datoresidente','valor_rut'));
+
+            $subsidio = Subsidio::where('user_rut', $valor_id)
+                ->orderBy('fecha_viaje','desc')
+                ->first();
+
+
+
+            return view('codigoqr.index', ['datoqr' => $datoqr, 'datoresidente' => $datoresidente, 'valor_rut' => $valor_rut , 'subsidio' => $subsidio]);
         }else{
             return view('vistasError.errorAcceso');
         }
@@ -38,8 +50,12 @@ class CodigoController extends Controller
 
         $datoid = Residente::find($id);
 
+        $subsidio = Subsidio::where('user_rut', $id)
+            ->orderBy('fecha_viaje','desc')
+            ->first();
+
         if(auth()->user()->role_id == 3){
-            return view('codigoqr.show', compact('datoid'));
+            return view('codigoqr.show', compact('datoid', 'subsidio'));
         }else{
             return view('vistasError.errorAcceso');
         }

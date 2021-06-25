@@ -109,6 +109,17 @@ class AdministradorController extends Controller
         return redirect('/admin/restaurar');
     }
 
+
+    /*historial de subsidios de residente*/
+    public function HistorialResidente($valor){
+
+        $subsidio = Subsidio::where('user_rut', $valor)
+            ->orderBy('fecha_viaje','desc')
+            ->paginate();
+
+        return view('admin.historialSubsidio', compact('subsidio'));
+    }
+
     /*elimina datos forceDelete de residente*/
     public function EliminarResidente($valor){
         Residente::withTrashed()->find($valor)->forceDelete();
@@ -267,6 +278,7 @@ class AdministradorController extends Controller
             //dump($datos);
             return view('admin.adminSubsidio', ['datos' => $datos, 'search' => $query]);
         }
+
     }
 
     /*VISTA IMPORTAR SUBSIDIOS POR EXCEL*/
@@ -283,22 +295,36 @@ class AdministradorController extends Controller
     /*ACTUALIZAR SUBSIDIOS*/
     public function actualizarExcelSubsidio(Request $request){
 
-        $file = $request->file('file');
-        $subsidios = Excel::toCollection(new SubsidiosImport, $file);
-        foreach($subsidios[0] as $subsidio){
-            //dd($subsidio['nombres']);
 
-            Subsidio::where('user_rut', $subsidio['rut'])->update([
-                'nombres' => $subsidio['nombres'],
-                'apellidos' => $subsidio['apellidos'],
-                'user_rut' => $subsidio['rut'],
-                'email' => $subsidio['email'],
-                'tipo_subsidio' => $subsidio['tipo_de_subsidio'],
-                'tramo' => $subsidio['tramo'],
-                'fecha_viaje' => $subsidio['fecha_de_viaje'],
-                'estado' => $subsidio['estado'],
-            ]);
+
+        $file = $request->file('file');
+
+        $subsidios = Excel::toCollection(new SubsidiosImport, $file);
+
+        //array de los 12 meses de la plantilla excel
+        $meses = array(0,1,2,3,4,5,6,7,8,9,10,11);
+
+        //recorre los 12 meses con la variable $i
+        foreach($meses as $i){
+
+            // va haciendo las actualizaciones dependiendo de la posicion de $subsidios[$i] desde el mes enero a diciembre
+            foreach ($subsidios[$i] as $subsidio){
+                //dd($subsidio['nombres']);
+                Subsidio::where('id', $subsidio['id'])->update([
+                    'nombres' => $subsidio['nombres'],
+                    'apellidos' => $subsidio['apellidos'],
+                    'user_rut' => $subsidio['rut'],
+                    'email' => $subsidio['email'],
+                    'tipo_subsidio' => $subsidio['tipo_de_subsidio'],
+                    'tramo' => $subsidio['tramo'],
+                    'fecha_viaje' => $subsidio['fecha_de_viaje'],
+                    'estado' => $subsidio['estado'],
+                ]);
+
+
+            }
         }
+
 
         return back()->with('message', 'Actualizacion de subsidios completada');
     }
@@ -312,15 +338,21 @@ class AdministradorController extends Controller
         return back()->with('message', 'Importacion de residentes completada');
     }
 
+    public function exportarVistaSubsidio(){
 
+
+        return view('admin.exportarSubsidio');
+    }
 
     /*EXPORTACION DE SUBSIDIOS POR EXCEL*/
     public function exportarSubsidio(Request $request){
-        //$fecha1 = $request->desde('desde');
-        //$fecha2 = $request->hasta('hasta');
 
+        $año = $request->get('fecha');
 
-        return Excel::download(new SubsidiosExport, 'subsidios.xlsx')->forYear(2021);
+        return (new SubsidiosExport)->forYear($año)->download('subsidios.xlsx');
+        //return Excel::download(new SubsidiosExport, 'subsidios.xlsx');
     }
+
+
 
 }

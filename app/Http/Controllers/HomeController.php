@@ -30,12 +30,14 @@ class HomeController extends Controller
 
             $dato = Residente::where('user_rut', auth()->user()->rut)->first();
             $dato1 = Residente::where('user_rut', auth()->user()->rut)->first();
+
+
             if ($dato != null) {
 
                 $valor = ($dato->user_rut);
 
 
-
+                //auto asigna rol 2 a usuario que inicia sesion
                 if(auth()->user()->rut == $valor){
                     $agregoRole = User::where('rut', '=', auth()->user()->rut)->first();
 

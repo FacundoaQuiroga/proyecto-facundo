@@ -1,6 +1,6 @@
 @extends('layouts.linksAdmin')
-
 @section('content')
+
     <!-- Main Navigation -->
 
     <!-- Main layout -->
@@ -29,7 +29,7 @@
                             @endif
                             <!-- Card image -->
                                 <div class="view view-cascade gradient-card-header primary-color">
-                                    <h2 class="h2-responsive mb-0 font-weight-bold">listado Usuarios</h2>
+                                    <h2 class="h2-responsive mb-0 font-weight-bold">subsidios solicitados por el usuario</h2>
                                 </div>
 
 
@@ -39,62 +39,54 @@
 
                                 <!-- Chart -->
                                 <div class="view gradient-card-header primary-color">
-                                    <div class="container col-md-11 mb-4">
-
+                                    <div class="container col-md-10 mb-4">
 
                                         <!-- Card -->
                                         <div class="card card-cascade cascading-admin-card user-card">
 
-                                            <form class="container form-inline mt-4" role="search">
-                                                <div class="input-group input-group-lg">
-                                                    <input class="form-control form-control-navbar" type="search"  name="search" placeholder="Buscar" >
-
-                                                    <div class="input-group-append">
-                                                        <button class="btn btn-navbar" type="submit">
-                                                            <i class="fas fa-search"></i>
-                                                        </button>
-                                                    </div>
-                                                </div>
-
-                                            </form>
-                                            <h6>
-                                                @if($search)
-                                                <div class="alert alert-primary" role="alert">
-                                                    Los resultados para tu busqueda '{{ $search }}' son:
-                                                </div>
-                                                @endif
-                                            </h6>
-
                                             <!-- Card Data -->
-                                            <div class="d-flex justify-content-start">
-                                                <i class=" info-color py-4 mr-3 z-depth-2"></i>
-                                                <a class="hoverable alert alert-warning" href="{{route('adminUsers.restaurar')}}">Lista de Usuarios eliminados</a>
+                                            <div class="admin-up d-flex justify-content-start">
+                                                <i class="fas fa-users info-color py-4 mr-3 z-depth-2"></i>
+                                                <div class="data">
+                                                    <h5 class="font-weight-bold dark-grey-text">Historial subsidios</h5>
+                                                </div>
                                             </div>
-
+                                            <!-- Card Data -->
                                             <div class="row">
                                                 <div class="col">
                                                     <table class="table">
 
-                                                        @foreach($datos as $dato)
+                                                        <thead>
+                                                        <tr class="info">
+                                                            <th>nombres</th>
+                                                            <th>apellidos</th>
+                                                            <th>subsidio</th>
+                                                            <th>tramo</th>
+                                                            <th>fecha</th>
+                                                            <th>estado</th>
+                                                        </tr>
+                                                        </thead>
 
-                                                               <tr>
-                                                                   <td>{{ $dato->name }}</td>
-                                                                   <td>{{ $dato->rut }}</td>
-                                                                   <td><a class="alert alert-success" href="{{route('adminUsers.edit', $dato->rut)}}">editar</a></td>
-                                                                   <td><a class="alert alert-danger" href="{{route('adminUsers.delete', $dato->rut)}}">eliminar</a></td>
-                                                               </tr>
+                                                        @foreach($subsidio as $dato)
 
+                                                            <tbody>
+                                                            <tr>
+                                                                <td>{{ $dato->nombres }}</td>
+                                                                <td>{{ $dato->apellidos }}</td>
+                                                                <td>{{ $dato->tipo_subsidio }}</td>
+                                                                <td>{{ $dato->tramo }}</td>
+                                                                <td>{{ $dato->fecha_viaje }}</td>
+                                                                <td>{{ $dato->estado }}</td>
+                                                            </tr>
+                                                            </tbody>
                                                         @endforeach
 
                                                     </table>
-                                                    {{$datos->links()}}
+
                                                 </div>
                                             </div>
-
-
-
                                         </div>
-
+                                        <!-- Card -->
 
                                     </div>
                                 </div>
@@ -119,6 +111,7 @@
 
         </div>
 
+
     </main>
     <!-- Main layout -->
 
@@ -135,5 +128,5 @@
     </footer>
     <!-- Footer -->
 
-@endsection
 
+@endsection
