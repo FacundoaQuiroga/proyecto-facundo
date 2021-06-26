@@ -139,7 +139,7 @@
 
                                                         <div class="md-form form-sm mb-0">
 
-                                                            @if($subsidio == null)
+                                                            @if($subsidio->estado == null)
                                                                 <input type="text" id="form11" class="form-control form-control-sm" placeholder="inhabilitado" disabled>
                                                             @else
                                                             <input type="text" id="form11" class="form-control form-control-sm" placeholder="{{ $subsidio->estado }}" disabled>

@@ -159,7 +159,7 @@ class ResidenteController extends Controller
             if( $residente->user_rut == auth()->user()->rut ){
 
                 $subsidio = Subsidio::where('user_rut', $residente->user_rut)
-                    ->orderBy('fecha_viaje','desc')
+                    ->orderBy('created_at','desc')
                     ->paginate();
                 //$categoria = Categoria::where('tipo_subsidio', $subsidio->tipo_subsidio)->paginate();
 
@@ -181,14 +181,15 @@ class ResidenteController extends Controller
         // en el modelo se le cambio la llave primaria y el increment a false
 
         $residente = Residente::find($user_rut);
-        $categoria = Categoria::all();
-        $tramo = Tramo::all();
+        //se eliminaron estas tablas
+        //$categoria = Categoria::all();
+        //$tramo = Tramo::all();
 
         //dump($categoria);
 
         if ($residente != null){
             if( $residente->user_rut == auth()->user()->rut ){
-                return view('residente.subsidio', ['residente' => $residente, 'categoria' => $categoria, 'tramo' => $tramo]);
+                return view('residente.subsidio', ['residente' => $residente]);
             }else{
                 return view('errorAcceso');
             }

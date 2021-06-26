@@ -112,11 +112,29 @@
                                                                 </div>
                                                             </div> -->
 
+                                                            <!--
                                                              <input type="text" id="rol_id" class="form-control form-control-sm" name="rol_id"  placeholder="{{ $user->role_id }}" value="{{ $user->role_id }}" >
-
-
                                                             <input type="hidden" name="_method" value="PUT">
                                                             <label for="form5" class="">Rol</label>
+                                                             -->
+
+                                                                <select name="rol_id" class="browser-default custom-select">
+                                                                    @if($user->role_id != null)
+                                                                        @if($user->role_id == '1')
+                                                                            <option hidden selected value="">Administrador</option>
+                                                                        @elseif($user->role_id == '2')
+                                                                            <option hidden selected value="">Residente</option>
+                                                                        @elseif($user->role_id == '3')
+                                                                            <option hidden selected value="">Validador</option>
+                                                                        @endif
+                                                                    @endif
+                                                                    <option hidden value="">No hay rol seleccionado</option>
+                                                                    <option  value="1">Administrador</option>
+                                                                    <option  value="2">Residente</option>
+                                                                    <option  value="3">Validador</option>
+
+                                                                </select>
+
 
                                                         </div>
 

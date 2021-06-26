@@ -56,9 +56,17 @@
                                         <div class="row">
                                             <div class="col">
                                                 <table class="table">
-
+                                                    <thead>
+                                                    <tr class="info alert alert-info">
+                                                        <th>Nombres</th>
+                                                        <th>Rut</th>
+                                                        <th></th>
+                                                        <th></th>
+                                                        <th></th>
+                                                    </tr>
+                                                    </thead>
                                                     @foreach($datos as $dato)
-
+                                                        <tbody>
                                                         <tr>
                                                             <td>{{ $dato->nombres }}</td>
                                                             <td>{{ $dato->user_rut }}</td>
@@ -66,7 +74,7 @@
                                                             <td><a class="hoverable alert alert-warning" href="{{route('admin.HistorialResidente', $dato->user_rut)}}">Historial Subsidios</a></td>
                                                             <td><a class="hoverable alert alert-danger" href="{{route('admin.EliminarResidente', $dato->user_rut)}}">Eliminar definitivamente</a></td>
                                                         </tr>
-
+                                                        </tbody>
                                                     @endforeach
 
                                                 </table>

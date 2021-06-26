@@ -113,11 +113,11 @@
                                                     <div class="col-lg-4 col-md-4">
 
                                                         <div class="md-form form-sm mb-0">
-                                                                <select name="subsidio" class="browser-default custom-select">
-                                                                    @foreach($categoria as $cat)
-                                                                        <option selected value="{{$cat->tipo_subsidio}}">{{$cat->tipo_subsidio}}</option>
-                                                                    @endforeach
-                                                                </select>
+                                                            <select name="subsidio" class="browser-default custom-select">
+                                                                <option selected value="aereo">aereo</option>
+                                                                <option value="terrestre">terrestre</option>
+                                                                <option value="maritimo">maritimo</option>
+                                                            </select>
                                                         </div>
 
                                                     </div>
@@ -125,11 +125,11 @@
                                                     <div class="col-lg-4 col-md-4">
 
                                                         <div class="md-form form-sm mb-0">
-                                                            <select name="tramo"  class="browser-default custom-select">
-                                                                @foreach($tramo as $tram)
-                                                                    <option selected value="{{$tram->tipo_tramo}}">{{$tram->tipo_tramo}}</option>
-                                                                @endforeach
+                                                            <select name="tramo" class="browser-default custom-select">
+                                                                <option selected value="chaiten-puertomontt">chaiten-puertomontt</option>
+                                                                <option value="puertomontt-chaiten">puertomontt-chaiten</option>
                                                             </select>
+
                                                         </div>
 
                                                     </div>

@@ -56,16 +56,25 @@
                                         <div class="row">
                                             <div class="col">
                                                 <table class="table">
+                                                    <thead>
+                                                    <tr class="info alert alert-info">
+                                                        <th>Nombre</th>
+                                                        <th>Rut</th>
+                                                        <th></th>
+                                                        <th></th>
+                                                        <th></th>
+                                                    </tr>
+                                                    </thead>
 
                                                     @foreach($datos as $dato)
-
+                                                        <tbody>
                                                         <tr>
                                                             <td>{{ $dato->name }}</td>
                                                             <td>{{ $dato->rut }}</td>
                                                             <td><a class="hoverable alert alert-success" href="{{route('adminUsers.recuperarUsuario', $dato->rut)}}">Restaurar</a></td>
                                                             <td><a class="hoverable alert alert-danger" href="{{route('adminUsers.eliminarUsuario', $dato->rut)}}">Eliminar definitivamente</a></td>
                                                         </tr>
-
+                                                        </tbody>
                                                     @endforeach
 
                                                 </table>

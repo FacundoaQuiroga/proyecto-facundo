@@ -92,15 +92,24 @@
                                                 <div class="col">
                                                     <table class="table">
 
-                                                        @foreach($datos as $dato)
+                                                        <thead>
+                                                        <tr class="info alert-info">
+                                                            <th>Nombres</th>
+                                                            <th>Apellidos</th>
+                                                            <th></th>
+                                                            <th></th>
+                                                        </tr>
+                                                        </thead>
 
+                                                        @foreach($datos as $dato)
+                                                            <tbody>
                                                                <tr>
                                                                    <td>{{ $dato->nombres }}</td>
                                                                    <td>{{ $dato->apellidos }}</td>
                                                                    <td><a class="hoverable alert alert-success" href="{{route('admin.edit', $dato->user_rut)}}">editar</a></td>
                                                                    <td><a class="hoverable alert alert-danger" href="{{route('admin.delete', $dato->user_rut)}}">eliminar</a></td>
                                                                </tr>
-
+                                                            </tbody>
                                                         @endforeach
 
                                                     </table>

@@ -75,15 +75,23 @@
                                                 <div class="col">
                                                     <table class="table">
 
+                                                        <thead>
+                                                        <tr class="info alert-info">
+                                                            <th>Nombre</th>
+                                                            <th>Rut</th>
+                                                            <th></th>
+                                                            <th></th>
+                                                        </tr>
+                                                        </thead>
                                                         @foreach($datos as $dato)
-
+                                                            <tbody>
                                                                <tr>
                                                                    <td>{{ $dato->name }}</td>
                                                                    <td>{{ $dato->rut }}</td>
                                                                    <td><a class="alert alert-success" href="{{route('adminUsers.edit', $dato->rut)}}">editar</a></td>
                                                                    <td><a class="alert alert-danger" href="{{route('adminUsers.delete', $dato->rut)}}">eliminar</a></td>
                                                                </tr>
-
+                                                            </tbody>
                                                         @endforeach
 
                                                     </table>

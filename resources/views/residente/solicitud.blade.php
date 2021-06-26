@@ -40,7 +40,7 @@
 
                             <!-- Chart -->
                             <div class="view gradient-card-header primary-color">
-                                <div class="container col-md-10 mb-4">
+                                <div class="container col-md-12 mb-4">
 
                                     <!-- Card -->
                                     <div class="card card-cascade cascading-admin-card user-card">

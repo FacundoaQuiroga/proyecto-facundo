@@ -168,7 +168,7 @@ class AdministradorController extends Controller
         $user->rut = $request->get('rut');
         $user->name = $request->get('name');
         $user->email = $request->get('email');
-        $user->rol_id = $request->get('rol_id');
+        $user->role_id = $request->get('rol_id');
         $user->save();
 
         return  redirect('/adminUsers/');
@@ -273,7 +273,7 @@ class AdministradorController extends Controller
             $query = trim($request->get('search'));
             $datos = Subsidio::where('nombres', 'LIKE', '%' . $query . '%')
                 ->orWhere('apellidos', 'LIKE', '%' . $query . '%')
-                ->orderBy('fecha_viaje','desc')
+                ->orderBy('created_at','desc')
                 ->paginate();
             //dump($datos);
             return view('admin.adminSubsidio', ['datos' => $datos, 'search' => $query]);

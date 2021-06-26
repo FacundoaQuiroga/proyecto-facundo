@@ -57,33 +57,38 @@
                             <ul>
                                 <!--si el usuario logeado tiene rol administrador '1' entonces tendra acceso a
                                     todos los links incluidos los de residente y si no entonces tendra los de residente unicamente-->
-                                @if(Auth::user()->role_id == '1')
 
-                                    <li>
-                                        <a href="/admin">listado residentes</a>
-                                    </li>
-                                    <li>
-                                        <a href="/adminUsers">listado usuarios</a>
-                                    </li>
-                                    <li>
-                                        <a href="/adminSubsidio">Solicitudes de subsidio</a>
-                                    </li>
+                                @if(Auth::user() != null)
+                                    @if(Auth::user()->role_id == '1')
 
-                                    <li>
-                                        <a href="{{route('residentes.index')}}">Perfil residente</a>
-                                    </li>
-                                    <li>
-                                        <a href="{{route('qrcode.index')}}">Codigo QR residente</a>
-                                    </li>
+                                        <li>
+                                            <a href="/admin">listado residentes</a>
+                                        </li>
+                                        <li>
+                                            <a href="/adminUsers">listado usuarios</a>
+                                        </li>
+                                        <li>
+                                            <a href="/adminSubsidio">Solicitudes de subsidio</a>
+                                        </li>
+                                        <li>
+                                            <a href="{{route('residentes.index')}}">Perfil residente</a>
+                                        </li>
+                                        <li>
+                                            <a href="{{route('qrcode.index')}}">Codigo QR residente</a>
+                                        </li>
 
-                                    @else
-                                    <li>
-                                        <a href="{{route('residentes.index')}}">Perfil residente</a>
-                                    </li>
-                                    <li>
-                                        <a href="{{route('qrcode.index')}}">Codigo QR residente</a>
-                                    </li>
+                                        @else
 
+                                        <li>
+                                            <a href="{{route('residentes.index')}}">Perfil residente</a>
+                                        </li>
+                                        <li>
+                                            <a href="{{route('qrcode.index')}}">Codigo QR residente</a>
+                                        </li>
+
+                                    @endif
+                                @else
+                                        <!--evita que el usuario tenga acceso al menu y asi se vuelve a logear para tener acceso-->
                                 @endif
 
 
