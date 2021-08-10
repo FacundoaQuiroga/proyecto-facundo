@@ -62,7 +62,7 @@
         }
 
         .intro-2 {
-            background: url("https://mdbootstrap.com/img/Photos/Others/forest1.jpg")no-repeat center center;
+            background: url('/img/fotoLogin.jpg')no-repeat center center;
             background-size: cover;
         }
 

@@ -25,5 +25,6 @@ $("#btnvalida").click(function(){
         $("#msgerror").html("El rut ingresado es válido");
     } else {
         $("#msgerror").html("El Rut no es válido recuerda colocar el guion <br> ejemplo: 12345678-9");
+        document.querySelector("#txt_rut").value = '';
     }
 });

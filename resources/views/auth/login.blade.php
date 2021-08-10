@@ -44,7 +44,7 @@
         }
 
         .intro-2 {
-            background: url("https://mdbootstrap.com/img/Photos/Horizontal/Nature/full page/img%20(11).jpg")no-repeat center center;
+            background: url('/img/fotoLogin.jpg') no-repeat center center;
             background-size: cover;
         }
         .top-nav-collapse {
@@ -180,7 +180,7 @@
                                     <!--Body-->
                                     <div class="md-form">
                                         <i class="fas fa-user prefix white-text"></i>
-                                        <input id="txt_rut" type="text" class="form-control " name="rut" value="{{ old('rut') }}" required autocomplete="rut" placeholder="ejemplo: 1111111-1" autofocus>
+                                        <input id="txt_rut" type="text" class="form-control " name="rut" value="{{ old('rut') }}" required autocomplete="rut"  autofocus>
                                         <p class="text-info" id="msgerror"></p>
 
                                         <label for="txt_rut">Rut</label>
