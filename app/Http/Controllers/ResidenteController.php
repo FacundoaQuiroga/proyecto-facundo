@@ -207,6 +207,14 @@ class ResidenteController extends Controller
     // store de subsidio para almacenar solicitudes de subsidio
     public function storeSubsidio(Request $request, Subsidio $subsidio)
     {
+
+        $rules = [
+            'fechaViaje' => 'required'
+        ];
+
+        request()->validate($rules);
+
+
         $subsidio = new Subsidio();
         $subsidio->user_rut = $request->get('rut');
         $subsidio->email = $request->get('email');
@@ -216,6 +224,8 @@ class ResidenteController extends Controller
         $subsidio->tramo = $request->get('tramo');
         $subsidio->fecha_viaje = $request->get('fechaViaje');
         $subsidio->save();
+
+
         //$categoria = $request->get('subsidio');
         //dump($categoria);
 
@@ -225,7 +235,10 @@ class ResidenteController extends Controller
 //
 //        }
 
-        return back()->with('message', 'Solicitud de subsidio enviada con exito!');
+            //FALTA AGREGAR EL session()->flash('error', 'No ha seleccionado fecha');
+
+        return back()->with('success', 'Solicitud de subsidio enviada con exito!');
+
     }
 
 

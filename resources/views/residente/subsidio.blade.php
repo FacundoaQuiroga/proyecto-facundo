@@ -137,7 +137,7 @@
                                                     <div class="col-lg-4 col-md-4">
 
                                                         <div id="date-picker-example" class="md-form md-outline input-with-post-icon" inline="true">
-                                                            <input name="fechaViaje" placeholder="Seleccione fecha"  type="text"  id="datepicker" class="form-control datepicker">
+                                                            <input name="fechaViaje" placeholder="Seleccione fecha"  type="text"  id="datepicker" class="form-control datepicker" required>
                                                             <label>Fecha de viaje</label>
                                                             <i class="fas fa-calendar input-prefix"></i>
                                                         </div>
@@ -152,8 +152,27 @@
 
                                                 </div>
 
-                                                    @if(Session::has('message'))
-                                                        <p class="alert alert-success">{{ Session::get('message') }}</p>
+
+                                                    @if(session()->has('error'))
+                                                        <div class="alert alert-danger">
+                                                            {{ session()->get('error') }}
+                                                        </div>
+                                                    @endif
+
+                                                    @if(isset($errors) && $errors->any())
+
+                                                            <div class="alert alert-danger">
+                                                                <ul>
+                                                                    @foreach($errors->all() as $error)
+                                                                        <li>{{ $error }}</li>
+                                                                    @endforeach
+                                                                </ul>
+                                                            </div>
+
+                                                    @endif
+
+                                                    @if(Session::has('success'))
+                                                        <p class="alert alert-success">{{ Session::get('success') }}</p>
                                                     @endif
 
                                             </div>

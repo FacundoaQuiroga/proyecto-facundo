@@ -91,6 +91,7 @@ Route::get('residentes/{user_rut}/solicitud',[ResidenteController::class, 'solic
 Route::get('/residentes/{user_rut}/subsidio',[ResidenteController::class, 'subsidio'])->name('residentes.subsidio');
 //solicitud de subsidio create
 Route::get('/residentes/{user_rut}/subsidio/create', [ResidenteController::class, 'createSubsidio'])->name('subsidios.create');
+//subsidio almacenamiento de datos a base de datos store
 Route::post('/residentes/{user_rut}/subsidio', [ResidenteController::class, 'storeSubsidio'])->name('subsidios.store');
 //->middleware('auth', 'throttle:3,1440')
 /* IMPORTACION EXCEL SUBSIDIO*/
